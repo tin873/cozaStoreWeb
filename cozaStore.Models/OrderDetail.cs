@@ -21,10 +21,7 @@ namespace cozaStore.Models
         public int OrderID { get; set; }
 
         [DisplayName("số lượng")]
-        [RegularExpression(@"[0-9]+$", ErrorMessage = "Bạn cần nhập số")]
-        [Required(ErrorMessage = "Email không được để trống")]
-        [StringLength(30)]
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
 
 
 

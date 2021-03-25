@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace cozaStore.DataAccessLayer.Infrastructure
+namespace cozaStore.DataAccessLayer
 {
     public interface IUnitOfWork
     {

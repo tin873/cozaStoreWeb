@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cozaStore.DataAccessLayer.Infrastructure
+namespace cozaStore.DataAccessLayer
 {
     public interface IDbFactory : IDisposable
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace cozaStore.DataAccessLayer.Reposistory
+namespace cozaStore.DataAccessLayer
 {
     public interface IGenericReposistory<TEntity> where TEntity : class 
     {

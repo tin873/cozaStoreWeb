@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace cozaStore.BusinessLogicLayer.BaseServices
+namespace cozaStore.BusinessLogicLayer
 {
     public interface IBaseServices<TEntity> where TEntity : class
     {

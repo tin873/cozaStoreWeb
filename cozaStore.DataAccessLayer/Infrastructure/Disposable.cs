@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace cozaStore.DataAccessLayer.Infrastructure
+namespace cozaStore.DataAccessLayer
 {
     public class Disposable : IDisposable
     {

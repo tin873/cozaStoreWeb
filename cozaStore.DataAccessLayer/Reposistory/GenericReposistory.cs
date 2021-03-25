@@ -1,5 +1,4 @@
-﻿using cozaStore.DataAccessLayer.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace cozaStore.DataAccessLayer.Reposistory
+namespace cozaStore.DataAccessLayer
 {
     class GenericReposistory<TEntity> : IGenericReposistory<TEntity> where TEntity : class
     {

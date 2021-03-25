@@ -1,4 +1,4 @@
-﻿namespace cozaStore.DataAccessLayer.Infrastructure
+﻿namespace cozaStore.DataAccessLayer
 {
     public class DbFactory : Disposable, IDbFactory
     {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace cozaStore.DataAccessLayer
 {
-    class GenericReposistory<TEntity> : IGenericReposistory<TEntity> where TEntity : class
+    public class GenericReposistory<TEntity> : IGenericReposistory<TEntity> where TEntity : class
     {
         #region field
         private cozaStoreDbContext _dbContext;

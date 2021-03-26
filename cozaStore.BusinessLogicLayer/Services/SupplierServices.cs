@@ -1,10 +1,10 @@
 ﻿using cozaStore.DataAccessLayer;
 using cozaStore.Models;
 
-namespace cozaStore.BusinessLogicLayer.Services
+namespace cozaStore.BusinessLogicLayer
 {
-    public class SupplierServices : BaseServices<Comment>, ICommentServices
+    public class SupplierServices : BaseServices<Supplier>, ISupplierServices
     {
-        public SupplierServices(IUnitOfWork unitOfWork, IGenericReposistory<Comment> genericReposistory) : base(unitOfWork, genericReposistory) { }
+        public SupplierServices(IUnitOfWork unitOfWork, IGenericReposistory<Supplier> genericReposistory) : base(unitOfWork, genericReposistory) { }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using cozaStore.DataAccessLayer;
 using cozaStore.Models;
 
-namespace cozaStore.BusinessLogicLayer.Services
+namespace cozaStore.BusinessLogicLayer
 {
     public class CommentServices : BaseServices<Comment>, ICommentServices
     {

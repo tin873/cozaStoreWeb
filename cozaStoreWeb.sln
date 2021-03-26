@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cozaStore.Common", "cozaSto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cozaStore.BusinessLogicLayer", "cozaStore.BusinessLogicLayer\cozaStore.BusinessLogicLayer.csproj", "{E2264354-040B-4C35-A0EF-79E770DC419A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cozaStore.Presentation", "cozaStore.Presentation\cozaStore.Presentation.csproj", "{C2F79E8A-5D19-4167-A394-8CBA068AA450}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E2264354-040B-4C35-A0EF-79E770DC419A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2264354-040B-4C35-A0EF-79E770DC419A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2264354-040B-4C35-A0EF-79E770DC419A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F79E8A-5D19-4167-A394-8CBA068AA450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F79E8A-5D19-4167-A394-8CBA068AA450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F79E8A-5D19-4167-A394-8CBA068AA450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F79E8A-5D19-4167-A394-8CBA068AA450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

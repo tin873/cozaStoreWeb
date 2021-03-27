@@ -36,5 +36,7 @@ namespace cozaStore.BusinessLogicLayer
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter);
         IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> filter);
         Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> filter);
+
+        IEnumerable<TEntity> GetTop(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
     }
 }

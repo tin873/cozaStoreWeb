@@ -1,9 +1,5 @@
 ﻿using cozaStore.BusinessLogicLayer;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cozaStore.Presentation.Controllers
@@ -15,10 +11,16 @@ namespace cozaStore.Presentation.Controllers
         {
             _productServices = productServices;
         }
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var products = await _productServices.GetAsync(filter: b => b.Quantity > 0, orderBy: b => b.OrderBy(x => x.ProductName), page: 1, pageSize: 12);
+            var products = _productServices.GetTop(orderBy: x => x.OrderBy(p => p.Quantity));
             return View(products);
+        }
+
+        public PartialViewResult _TopProductNew()
+        {
+            var products = _productServices.GetTop(orderBy: x => x.OrderByDescending(p => p.Quantity));
+            return PartialView(products);
         }
 
         public ActionResult About()

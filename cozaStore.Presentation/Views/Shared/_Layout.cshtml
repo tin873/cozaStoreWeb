@@ -65,7 +65,7 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
+                    <a href="@Url.Action("Index", "Home")" class="logo">
                         <img src="/wwwroot/images/icons/logo-01.png" alt="IMG-LOGO">
                     </a>
 
@@ -73,11 +73,11 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li class="active-menu">
-                                <a href="index.html">Trang chủ</a>
+                                <a href="@Url.Action("Index", "Home")">Trang chủ</a>
                             </li>
 
                             <li>
-                                <a href="product.html">Sản phẩm</a>
+                                <a href="@Url.Action("Index", "Products")">Sản phẩm</a>
                             </li>
 
                             <li class="label1" data-label1="hot">
@@ -216,14 +216,14 @@
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    <img src="~/wwwroot/images/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
+                <form class="wrap-search-header flex-w p-l-15" action="/Products/Index" method="post">
+                    <button class="flex-c-m trans-04" type="submit">
                         <i class="zmdi zmdi-search"></i>
                     </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search...">
+                    <input class="plh3" type="search" name="searchHeader" placeholder="Tìm kiếm ...">
                 </form>
             </div>
         </div>
@@ -645,8 +645,8 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="vendor/daterangepicker/moment.min.js"></script>
-    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="~/wwwroot/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/wwwroot/vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
     <script src="~/wwwroot/vendor/slick/slick.min.js"></script>
     <script src="~/wwwroot/js/slick-custom.js"></script>

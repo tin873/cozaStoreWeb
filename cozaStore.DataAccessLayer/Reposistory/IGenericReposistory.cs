@@ -32,5 +32,7 @@ namespace cozaStore.DataAccessLayer
         IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> filter);
         Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> filter);
         IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> filter);
+
+
     }
 }

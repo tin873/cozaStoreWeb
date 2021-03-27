@@ -129,6 +129,12 @@ namespace cozaStore.BusinessLogicLayer
             return await _reposistory.GetByIdAsync(id);
         }
 
+        public virtual IEnumerable<TEntity> GetTop(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        {
+            var query = orderBy(_reposistory.GetAll());
+            return query.Take(8);
+        }
+
         public virtual bool Update(TEntity entity)
         {
             _reposistory.Update(entity);

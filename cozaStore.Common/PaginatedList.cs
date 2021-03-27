@@ -25,8 +25,7 @@ namespace cozaStore.Common
 
         public bool HasNextPage => PageIndex < TotalPages;
 
-        public static async Task<PaginatedList<TEntity>> CreateAsync(IQueryable<TEntity> source, int pageIndex,
-            int pageSize)
+        public static async Task<PaginatedList<TEntity>> CreateAsync(IQueryable<TEntity> source, int pageIndex, int pageSize)
         {
             var count = await source.CountAsync();
             var entities = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();

@@ -49,10 +49,25 @@ namespace cozaStore.Presentation.Controllers
             return View(products);
         }
 
+        public async Task<ActionResult> Detail(int id)
+        {
+            var product = await _product.GetByIdAsync(id);
+            if(product == null)
+            {
+                return HttpNotFound();
+            }    
+            return View(product);
+        }
         public PartialViewResult _Menu()
         {
             var categories =  _category.GetAll();
             return PartialView(categories);
+        }
+
+        public  PartialViewResult _RealeaseProduct(int id)
+        {
+            var products =  _product.FindAll(filter: x => x.Category.CategoryID == id);
+            return PartialView(products);
         }
     }
 }

@@ -7,9 +7,11 @@ namespace cozaStore.Presentation.Controllers
     public class HomeController : Controller
     {
         private readonly IProductServices _productServices;
-        public HomeController(IProductServices productServices)
+        private readonly ICategoryServices _category;
+        public HomeController(IProductServices productServices, ICategoryServices category)
         {
             _productServices = productServices;
+            _category = category;
         }
         public ActionResult Index()
         {
@@ -35,6 +37,12 @@ namespace cozaStore.Presentation.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public PartialViewResult _Footer()
+        {
+            var categories = _category.GetAll();
+            return PartialView(categories);
         }
     }
 }

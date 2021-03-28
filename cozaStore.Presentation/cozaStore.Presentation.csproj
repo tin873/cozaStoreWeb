@@ -294,6 +294,7 @@
     <Content Include="wwwroot\images\thumb-01.jpg" />
     <Content Include="wwwroot\images\thumb-02.jpg" />
     <Content Include="wwwroot\images\thumb-03.jpg" />
+    <Content Include="wwwroot\images\trend-avatar-1.jpg" />
     <Content Include="wwwroot\js\CartController.js" />
     <Content Include="wwwroot\js\main.js" />
     <Content Include="wwwroot\js\map-custom.js" />

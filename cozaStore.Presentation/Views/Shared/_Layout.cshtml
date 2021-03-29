@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Trang chủ</title>
+    <title>Coza Store</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -48,16 +48,34 @@
                         Miễn phí vận chuyển với đơn hàng từ 1.000.000 đ
                     </div>
 
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Đăng nhập
-                        </a>
+                    @if (Session["UserID"] == null)
+                    {
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="@Url.Action("Login", "Home")" class="flex-c-m trans-04 p-lr-25">
+                                Đăng nhập
+                            </a>
 
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Đăng ký
-                        </a>
+                            <a href="@Url.Action("Register", "Home")" class="flex-c-m trans-04 p-lr-25">
+                                Đăng Ký
+                            </a>
 
-                    </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="@Url.Action("InforUser", "Home")" class="flex-c-m trans-04 p-lr-25">
+                                <svg style="padding-right:5px;" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                </svg>@Session["fullName"]
+                            </a>
+                            <a href="@Url.Action("Logout", "Home")" class="flex-c-m trans-04 p-lr-25">
+                                Đăng xuất
+                            </a>
+
+                        </div>
+                    }
                 </div>
             </div>
 
@@ -93,7 +111,7 @@
                             </li>
 
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="@Url.Action("Contact", "Home")">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -563,7 +581,14 @@
         $('.js-addcart-detail').each(function () {
             var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
             $(this).on('click', function () {
-                swal(nameProduct, "is added to cart !", "success");
+                swal(nameProduct, "đã thêm vào giỏ hàng !", "success");
+            });
+        });
+
+        /*.............................................*/
+        $('.js-contact').each(function () {
+            $(this).on('click', function () {
+                swal("Đã gửi", "thông tin liên hệ", "success");
             });
         });
 

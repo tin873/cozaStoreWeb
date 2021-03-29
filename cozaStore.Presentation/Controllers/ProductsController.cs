@@ -26,19 +26,26 @@ namespace cozaStore.Presentation.Controllers
         {
             IEnumerable<Product> products;
             string search = data["search"];
-            if (search != null)
+            string searchHeader = data["searchHeader"];
+            if (search != null || searchHeader != null)
             {
                 page = 1;
             }
             else
             {
                 search = CurrentFilter;
+                searchHeader = CurrentFilter;
             }
             ViewData["CurrentFilter"] = search;
+            ViewData["CurrentFilter"] = searchHeader;
             Expression<Func<Product, bool>> filter = null;
             if (search.IsNotBlank())
             {
                 filter = b => b.ProductName.ToLower().Contains(search.ToLower());
+            }
+            if (searchHeader.IsNotBlank())
+            {
+                filter = b => b.ProductName.ToLower().Contains(searchHeader.ToLower());
             }
             if (id.IsBlank())
             {

@@ -25,7 +25,7 @@ namespace cozaStore.Models
         [DisplayName("Email")]
         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Bạn cần nhập đúng định dạng email")]
         [Required(ErrorMessage = "Email không được để trống")]
-        [StringLength(50, MinimumLength = 12, ErrorMessage = "Email phải có ít nhất 12 kí tự và nhiều nhất 50 kí tự.")]
+        [StringLength(50, MinimumLength = 6, ErrorMessage = "Email phải có ít nhất 12 kí tự và nhiều nhất 50 kí tự.")]
         public string Email { get; set; }
 
         [DisplayName("Mật khẩu")]
@@ -35,7 +35,7 @@ namespace cozaStore.Models
 
         [DisplayName("Địa chỉ")]
         [Required(ErrorMessage = "Địa chỉ không được để trống")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tên nhà cung cấp phải có ít nhất 5 kí tự và nhiều nhất 50 kí tự.")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Tên người dùng phải có ít nhất 5 kí tự và nhiều nhất 50 kí tự.")]
         public string Address { get; set; }
 
         [DisplayName("Số điện thoại")]

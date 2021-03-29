@@ -168,6 +168,8 @@
     <Content Include="wwwroot\.gitattributes" />
     <Content Include="wwwroot\css\main.css" />
     <Content Include="wwwroot\css\util.css" />
+    <Content Include="wwwroot\css_login\main.css" />
+    <Content Include="wwwroot\css_login\util.css" />
     <Content Include="wwwroot\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="wwwroot\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="wwwroot\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
@@ -502,6 +504,9 @@
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Views\Products\_RealeaseProduct.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\InforUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

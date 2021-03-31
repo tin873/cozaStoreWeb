@@ -79,6 +79,9 @@ namespace cozaStore.Presentation
 
             container.RegisterType<IGenericReposistory<Coupon>, GenericReposistory<Coupon>>();
             container.RegisterType<ICouponServices, CouponServices>();
+
+            container.RegisterType<IGenericReposistory<Status>, GenericReposistory<Status>>();
+            container.RegisterType<IStatusServices, StatusServices>();
         }
     }
 }

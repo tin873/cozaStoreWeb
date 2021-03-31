@@ -1,4 +1,5 @@
 ﻿using cozaStore.Models;
+using System;
 using System.Data.Entity;
 
 namespace cozaStore.DataAccessLayer
@@ -31,7 +32,10 @@ namespace cozaStore.DataAccessLayer
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            //setdatetime
+
+            modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
+
             //set varchar 
             modelBuilder.Entity<Comment>()
                 .Property(e => e.Email)
@@ -92,11 +96,6 @@ namespace cozaStore.DataAccessLayer
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
-            //User with Order
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Orders)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
 
             //Role with User
             modelBuilder.Entity<Role>()

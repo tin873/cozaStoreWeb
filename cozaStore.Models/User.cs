@@ -8,10 +8,6 @@ namespace cozaStore.Models
     [Table("User")]
     public class User
     {
-        public User()
-        {
-            Orders = new HashSet<Order>();
-        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -46,7 +42,6 @@ namespace cozaStore.Models
         [DefaultValue(2)]
         public int? RoleID { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; }
 
         public virtual Role Role { get; set; }
     }

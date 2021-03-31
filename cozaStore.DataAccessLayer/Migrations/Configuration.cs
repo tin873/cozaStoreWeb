@@ -78,6 +78,11 @@
                     Discount = 10,
                     Description ="Giảm giá nhân dịp sinh nhật"
                 },
+                new Coupon()
+                {
+                    CouponCode = "KHONGGIAMGIA",
+                    Discount = 0,
+                }
             };
             context.Coupons.AddRange(coupons);
             #endregion

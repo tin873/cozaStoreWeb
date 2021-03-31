@@ -26,7 +26,6 @@ namespace cozaStore.Models
         [DisplayName("Ngày nhận")]
         public DateTime EndDate { get; set; }
 
-        public int UserID { get; set; }
 
         [DisplayName("Họ tên")]
         [Required(ErrorMessage = "Họ tên không được để trống")]
@@ -35,7 +34,7 @@ namespace cozaStore.Models
 
         [DisplayName("Địa chỉ")]
         [Required(ErrorMessage = "Địa chỉ không được để trống")]
-        [StringLength(50, MinimumLength =10, ErrorMessage ="Địa chỉ có ít nhất 10 kí tự và nhiều nhất 50 kí tự.")]
+        [StringLength(50)]
         public string Address { get; set; }
 
         [DisplayName("Số điện thoại")]
@@ -77,7 +76,6 @@ namespace cozaStore.Models
 
         public virtual Status Status { get; set; }
 
-        public virtual User User { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

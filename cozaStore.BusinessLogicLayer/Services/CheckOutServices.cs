@@ -28,7 +28,7 @@ namespace cozaStore.BusinessLogicLayer
                 _orderReposistory.Add(order);
                 foreach (var orderDetail in orderDetails)
                 {
-                    var product = _productReposistory.GetById(orderDetail.ProductID);
+                    var product = _productReposistory.GetById(orderDetail.Product.ProductID);
                     product.Quantity -= orderDetail.Quantity;
                     _productReposistory.Update(product);
                     orderDetail.Order = order;

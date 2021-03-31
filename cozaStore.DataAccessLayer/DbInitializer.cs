@@ -58,6 +58,25 @@ namespace cozaStore.DataAccessLayer
             context.Roles.AddRange(roles);
             #endregion
 
+            #region Add Coupon
+            var coupons = new List<Coupon>()
+            {
+                new Coupon()
+                {
+                    CouponCode = "TETDENROI",
+                    Discount = 20,
+                    Description ="Giảm giá nhân dịp tết"
+                },
+                new Coupon()
+                {
+                    CouponCode = "SINHNHAT",
+                    Discount = 10,
+                    Description ="Giảm giá nhân dịp sinh nhật"
+                },
+            };
+            context.Coupons.AddRange(coupons);
+            #endregion
+
             #region Add Status
             var statuses = new List<Status>()
             {

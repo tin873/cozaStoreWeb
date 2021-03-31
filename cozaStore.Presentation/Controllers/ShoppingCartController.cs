@@ -29,7 +29,7 @@ namespace cozaStore.Presentation.Controllers
             {
                 total += item.Total;
             }
-            ViewBag.GrandTotal = total;
+            ViewBag.GrandTotal = total.ToString("#,###");
             return View(list);
         }
         public async Task<ActionResult> AddToCart(int id)

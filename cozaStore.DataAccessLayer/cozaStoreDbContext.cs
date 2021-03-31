@@ -13,6 +13,8 @@ namespace cozaStore.DataAccessLayer
 
         public virtual DbSet<Contact> Contacts { get; set; }
 
+        public virtual DbSet<Coupon> Coupons { get; set; }
+
         public virtual DbSet<Order> Orders { get; set; }
 
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -100,6 +102,12 @@ namespace cozaStore.DataAccessLayer
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Users)
                 .WithRequired(e => e.Role)
+                .WillCascadeOnDelete(false);
+
+            //Coupon with Order
+            modelBuilder.Entity<Coupon>()
+                .HasMany(e => e.Orders)
+                .WithRequired(e => e.Coupon)
                 .WillCascadeOnDelete(false);
         }
     }

@@ -55,6 +55,7 @@
     <Compile Include="IServices\ICheckOutServices.cs" />
     <Compile Include="IServices\ICommentServices.cs" />
     <Compile Include="IServices\IContactServices.cs" />
+    <Compile Include="IServices\ICouponServices.cs" />
     <Compile Include="IServices\IOrderDetailServices.cs" />
     <Compile Include="IServices\IOrderServices.cs" />
     <Compile Include="IServices\IProductServices.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Services\CheckOutServices.cs" />
     <Compile Include="Services\CommentServices.cs" />
     <Compile Include="Services\ContactServices.cs" />
+    <Compile Include="Services\CouponServices.cs" />
     <Compile Include="Services\OrderDetailServices.cs" />
     <Compile Include="Services\OrderServices.cs" />
     <Compile Include="Services\ProductServices.cs" />

@@ -22,6 +22,10 @@ namespace cozaStore.Models
 
         [DisplayName("Ngày gửi")]
         public DateTime ShippedDate { get; set; }
+
+        [DisplayName("Ngày nhận")]
+        public DateTime EndDate { get; set; }
+
         public int UserID { get; set; }
 
         [DisplayName("Họ tên")]
@@ -39,7 +43,37 @@ namespace cozaStore.Models
         [StringLength(20)]
         public string Phone { get; set; }
 
+        [DisplayName("Ghi chú")]
+        [StringLength(500)]
+        public string Description { get; set; }
+
+        public decimal SumTotal
+        {
+            get
+            {
+                decimal sumTotal = 0m;
+                foreach (var item in OrderDetails)
+                {
+                    sumTotal = item.Product.Price * item.Quantity;
+                }
+                if(Coupon != null)
+                {
+                    sumTotal -= (Coupon.Discount * sumTotal) / 100;
+                    return sumTotal;
+                }    
+                else
+                {
+                    return sumTotal;
+                }    
+                
+            } 
+        }
+
         public int StatusId { get; set; }
+
+        public string CouponCode { get; set; }
+
+        public virtual Coupon Coupon { get; set; }
 
         public virtual Status Status { get; set; }
 

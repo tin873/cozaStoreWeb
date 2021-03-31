@@ -73,7 +73,7 @@ namespace cozaStore.Presentation.Controllers
             return PartialView(categories);
         }
 
-        public  PartialViewResult _RealeaseProduct(int id)
+        public PartialViewResult _RealeaseProduct(int id)
         {
             var products =  _product.FindAll(filter: x => x.Category.CategoryID == id);
             return PartialView(products);

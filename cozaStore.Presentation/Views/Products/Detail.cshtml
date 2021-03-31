@@ -48,10 +48,7 @@
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="time">
-                                        <option>Size S</option>
-                                        <option>Size M</option>
-                                        <option>Size L</option>
-                                        <option>Size XL</option>
+                                        <option>@Model.Size</option>
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -66,10 +63,8 @@
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="time">
-                                        <option>Đỏ</option>
-                                        <option>Xanh</option>
-                                        <option>Trắng</option>
-                                        <option>Đen</option>
+                                        <option>@Model.Color</option>
+                                      
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -78,21 +73,11 @@
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-204 flex-w flex-m respon6-next">
-                                <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                        <i class="fs-16 zmdi zmdi-minus"></i>
-                                    </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                        <i class="fs-16 zmdi zmdi-plus"></i>
-                                    </div>
-                                </div>
-
-                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail addtocart" type="submit">
                                     Thêm vào giỏ
                                 </button>
+                                
                             </div>
                         </div>
                     </div>
@@ -108,7 +93,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Chi tiết</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô tả</a>
                     </li>
 
                     <li class="nav-item p-b-10">
@@ -273,3 +258,20 @@
 
 <!-- Related Products -->
 @{ Html.RenderAction("_RealeaseProduct", "Products", new { id = Model.Category.CategoryID });}
+
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".addtocart").click(function (e) {
+                e.preventDefault();
+                var url = "/ShoppingCart/AddToCart";
+                $.get(url, { id: @Model.ProductID }, function (data) {
+                    $(".ajaxcart").html(data);
+                })
+                
+            });
+        });
+
+    </script>
+}

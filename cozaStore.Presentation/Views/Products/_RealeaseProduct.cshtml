@@ -21,14 +21,14 @@
                                 @{ var ImagePath = "~/wwwroot/images/" + item.Image;}
                                 <img src="@Url.Content(ImagePath)" alt="IMG-PRODUCT">
 
-                                <button onclick="location.href='@Url.Action("ProductDetails", "Home", new { id = item.ProductID })'" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                    Xem chi tiết
+                                <button class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 addtocart js-addcart-detail" data-id="@item.ProductID">
+                                    Thêm vào giỏ hàng
                                 </button>
                             </div>
 
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="@Url.Action("ProductDetails", "Home", new { id = item.ProductID })" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    <a href="@Url.Action("Detail", "Products", new { id = item.ProductID })" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 js-name-detail">
                                         @item.ProductName
                                     </a>
 
@@ -45,3 +45,24 @@
         </div>
     </div>
 </section>
+<script src="~/wwwroot/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        $("button.addtocart").click(function (e) {
+            e.preventDefault();
+            var productId = $(this).data("id");
+            var url = "/ShoppingCart/AddToCart";
+            $.get(url, { id: productId }, function (data) {
+                $(".ajaxcart").html(data);
+            })
+
+        });
+    });
+
+    $('.js-addcart-detail').each(function () {
+        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "đã thêm vào giỏ hàng !", "success");
+        });
+    });
+</script>

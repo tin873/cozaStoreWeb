@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constant.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="PaginatedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionCart\CartItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cozaStore.DataAccessLayer\cozaStore.DataAccessLayer.csproj">

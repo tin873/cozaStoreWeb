@@ -1,4 +1,5 @@
 ﻿using cozaStore.BusinessLogicLayer;
+using cozaStore.Common;
 using cozaStore.Models;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace cozaStore.Presentation.Controllers
         private readonly IContactServices _contact;
         private readonly IUserServieces _user;
         private readonly IRoleServices _role;
+
         public HomeController(IProductServices productServices, ICategoryServices category, IContactServices contact, IUserServieces user, IRoleServices role)
         {
             _productServices = productServices;
@@ -78,7 +80,14 @@ namespace cozaStore.Presentation.Controllers
                     Session["phone"] = user.Phone;
                     Session["email"] = user.Email;
                     Session["userId"] = user.UserID;
-                    return RedirectToAction("Index");
+                    if(Session[Constant.Cart] != null)
+                    {
+                        return RedirectToAction("Index","ShoppingCart");
+                    }   
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }    
                 }
                 else
                 {

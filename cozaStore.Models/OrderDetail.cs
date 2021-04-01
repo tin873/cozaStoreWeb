@@ -9,7 +9,7 @@ namespace cozaStore.Models
     {
         [Key]
         [Column(Order = 0)]
-        public int ProductID { get; set; }
+        public int ProductDetailId { get; set; }
 
         [Key]
         [Column(Order = 1)]
@@ -22,6 +22,6 @@ namespace cozaStore.Models
 
         public virtual Order Order { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual ProductDetail ProductDetail { get; set; }
     }
 }

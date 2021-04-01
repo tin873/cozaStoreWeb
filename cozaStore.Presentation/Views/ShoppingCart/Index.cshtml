@@ -34,21 +34,21 @@
                                 {
                                     <tr class="table_row">
                                         <td class="column-1" style="width: 20%; text-align:center;">
-                                            <a class="removeproduct" data-id="@item.Product.ProductID">
+                                            <a class="removeproduct" data-id="@item.ProductDetail.ProductDetailId">
                                                 <div class="how-itemcart1">
-                                                    <img src="~/wwwroot/images/@item.Product.Image" alt="IMG">
+                                                    <img src="~/wwwroot/images/@item.ProductDetail.Image" alt="IMG">
                                                 </div>
                                             </a>
                                         </td>
-                                        <td class="column-1" style="width: 20%; text-align:center;">@item.Product.ProductName</td>
-                                        <td class="column-1" style="width: 20%; text-align:center;">@item.Product.Price.ToString("#,###")đ</td>
+                                        <td class="column-1" style="width: 20%; text-align:center;">@item.ProductDetail.ProductName</td>
+                                        <td class="column-1" style="width: 20%; text-align:center;">@item.ProductDetail.Price.ToString("#,###")đ</td>
                                         <td class="column-1" style="width: 20%; text-align:center;">
                                             <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                                <a class="decrproduct fs-16 zmdi zmdi-minus btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.Product.ProductID">
+                                                <a class="decrproduct fs-16 zmdi zmdi-minus btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.ProductDetail.ProductDetailId">
 
                                                 </a>
 
-                                                <input class="mtext-104 cl3 txt-center num-product qty@(item.Product.ProductID)" type="number" name="num-product1" value="@item.Quantity">
+                                                <input class="mtext-104 cl3 txt-center num-product qty@(item.ProductDetail.ProductDetailId)" type="number" name="num-product1" value="@item.Quantity">
                                                 @if (item.Quantity == item.QuantityReal)
                                                 {
                                                     <button id="btnup" class=" fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" disabled onclick="func()">
@@ -56,12 +56,12 @@
                                                 }
                                                 else
                                                 {
-                                                    <a class="incrproduct fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.Product.ProductID">
+                                                    <a class="incrproduct fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.ProductDetail.ProductDetailId">
                                                     </a>
                                                 }
                                             </div>
                                         </td>
-                                        <td class="column-1 total@(item.Product.ProductID)" style="width: 20%; text-align:center;">@item.Total.ToString("#,###")đ</td>
+                                        <td class="column-1 total@(item.ProductDetail.ProductDetailId)" style="width: 20%; text-align:center;">@item.Total.ToString("#,###")đ</td>
                                     </tr>
                                 }
                                 <tr>

@@ -9,20 +9,22 @@ namespace cozaStore.Presentation.Controllers
     public class CheckOutController : Controller
     {
         // GET: CheckOut
-        private readonly IProductServices _product;
+        private readonly IProductDetailServices _productDetail;
         private readonly IOrderDetailServices _orderDetail;
         private readonly IOrderServices _order;
         private readonly ICouponServices _coupon;
         private readonly ICheckOutServices _checkOut;
         private readonly IStatusServices _status;
-        public CheckOutController(IProductServices product, IOrderServices order, IOrderDetailServices orderDetail, ICouponServices coupon, ICheckOutServices checkOut, IStatusServices status)
+        private readonly IUserServieces _user;
+        public CheckOutController(IProductDetailServices product, IOrderServices order, IOrderDetailServices orderDetail, ICouponServices coupon, ICheckOutServices checkOut, IStatusServices status, IUserServieces user)
         {
-            _product = product;
+            _productDetail = product;
             _order = order;
             _orderDetail = orderDetail;
             _coupon = coupon;
             _checkOut = checkOut;
             _status = status;
+            _user = user;
         }
         [HttpGet]
         public ActionResult Index(string couponCode)
@@ -98,12 +100,14 @@ namespace cozaStore.Presentation.Controllers
             var address = data["address"];
             var description = data["description"];
             var status = _status.GetById(1);
+            var userId = Session["userId"];
+            User user = _user.GetById(userId);
             List<OrderDetail> orderDetails = new List<OrderDetail>();
             foreach (var item in cartItems)
             {
                 var orderDetail = new OrderDetail()
                 {
-                    Product = item.Product,
+                    ProductDetail = item.ProductDetail,
                     Quantity = item.Quantity
                 };
                 orderDetails.Add(orderDetail);
@@ -119,11 +123,13 @@ namespace cozaStore.Presentation.Controllers
                 Phone = phone,
                 Description = description,
                 Coupon = coupon,
-                Status = status
+                Status = status,
+                User = user
             };
             _checkOut.CheckOut(order, orderDetails);
             cartItems.Clear();
             Session[Constant.Code] = null;
+            coupon = null;
             return RedirectToAction("CheckOutIsOk");
         }
 

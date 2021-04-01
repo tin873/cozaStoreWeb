@@ -11,7 +11,6 @@ namespace cozaStore.Models
         public Product()
         {
             Comments = new HashSet<Comment>();
-            OrderDetails = new HashSet<OrderDetail>();
         }
 
         [Key]
@@ -36,21 +35,22 @@ namespace cozaStore.Models
         [DisplayFormat(DataFormatString = "{0:0,0} vnđ")]
         public decimal Price { get; set; }
 
-        [DisplayName("Kích cỡ")]
-        [StringLength(15)]
-        public string Size { get; set; }
-
-        [DisplayName("Mầu sắc")]
-        [StringLength(50)]
-        public string Color { get; set; }
-
-        [Required(ErrorMessage ="Số lượng sản phẩm không được để trống!")]
-        [DisplayName("Số lượng")]
-        public int Quantity { get; set; }
-
         public int SupplierID { get; set; }
 
         public int CategoryID { get; set; }
+
+        public int SumQuantity
+        {
+            get
+            {
+                int sum = 0;
+                foreach (var item in ProductDetails)
+                {
+                    sum += item.Quantity;
+                }
+                return sum;
+            } 
+        }
 
 
         public virtual Category Category { get; set; }
@@ -58,7 +58,8 @@ namespace cozaStore.Models
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
 
         public virtual Supplier Supplier { get; set; }
     }

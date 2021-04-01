@@ -21,17 +21,17 @@
             @foreach (var item in Model)
             {
 <li class="header-cart-item flex-w flex-t m-b-12">
-    <a class="removeproduct" data-id="@item.Product.ProductID"><div class="header-cart-item-img">
-    <img src="~/wwwroot/images/@item.Product.Image" alt="IMG">
+    <a class="removeproduct" data-id="@item.ProductDetail.ProductDetailId"><div class="header-cart-item-img">
+    <img src="~/wwwroot/images/@item.ProductDetail.Image" alt="IMG">
 </div></a>
 
     <div class="header-cart-item-txt p-t-8">
         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-            @item.Product.ProductName
+            @item.ProductDetail.ProductName
         </a>
 
         <span class="header-cart-item-info">
-            @item.Quantity x @(item.Product.Price.ToString("#,###"))đ
+            @item.Quantity x @(item.ProductDetail.Price.ToString("#,###"))đ
         </span>
     </div>
 </li>}

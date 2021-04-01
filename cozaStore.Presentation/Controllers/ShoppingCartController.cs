@@ -11,9 +11,11 @@ namespace cozaStore.Presentation.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly IProductServices _product;
-        public ShoppingCartController(IProductServices product)
+        private readonly IProductDetailServices _productDetail;
+        public ShoppingCartController(IProductServices product, IProductDetailServices productDetail)
         {
             _product = product;
+            _productDetail = productDetail;
         }
         // GET: ShoppingCart
         public ActionResult Index()
@@ -32,21 +34,33 @@ namespace cozaStore.Presentation.Controllers
             ViewBag.GrandTotal = total.ToString("#,###");
             return View(list);
         }
+
+        public async Task<ActionResult> GetIdProductDetail(string id)
+        {
+            var arr = id.Split(' ');
+            int productId = int.Parse(arr[0]);
+            string color = arr[1];
+            string size = arr[2];
+            Product product = await _product.GetByIdAsync(productId);
+            ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper())&& x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
+            int id1 = productDetail.ProductDetailId;
+            return RedirectToAction("AddToCart", new { id = id1 });
+        }
         public async Task<ActionResult> AddToCart(int id)
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem> ?? new List<CartItem>();
 
             CartItem model = new CartItem();
 
-            Product product = await _product.GetByIdAsync(id);
+            ProductDetail product = await _productDetail.GetByIdAsync(id);
 
-            var itemInCart = cart.FirstOrDefault(x => x.Product.ProductID == id);
+            var itemInCart = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == id);
 
             if (itemInCart == null)
             {
                 cart.Add(new CartItem()
                 {
-                    Product = product,
+                    ProductDetail = product,
                     Quantity = 1,
                 });
             }
@@ -91,11 +105,11 @@ namespace cozaStore.Presentation.Controllers
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
 
-            CartItem item = cart.FirstOrDefault(x => x.Product.ProductID == productId);
+            CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId);
 
             item.Quantity++;
 
-            var result = new { qty = item.Quantity, price = item.Product.Price };
+            var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
 
             return Json(result, JsonRequestBehavior.AllowGet);
 
@@ -104,7 +118,7 @@ namespace cozaStore.Presentation.Controllers
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
 
-            CartItem item = cart.FirstOrDefault(x => x.Product.ProductID == productId);
+            CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId);
 
             if (item.Quantity > 1)
             {
@@ -116,7 +130,7 @@ namespace cozaStore.Presentation.Controllers
                 cart.Remove(item);
             }
 
-            var result = new { qty = item.Quantity, price = item.Product.Price };
+            var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
 
             return Json(result, JsonRequestBehavior.AllowGet);
 
@@ -125,7 +139,7 @@ namespace cozaStore.Presentation.Controllers
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
 
-            CartItem item = cart.FirstOrDefault(x => x.Product.ProductID == productId) ;
+            CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId) ;
 
             cart.Remove(item);
 

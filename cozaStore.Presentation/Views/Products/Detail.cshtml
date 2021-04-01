@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Chi tiết";
     string ImagePath = "~/wwwroot/images/" + Model.Image;
+    var listSize = (List<SizeViewData>)ViewData["Size"];
+    var listColor = (List<ColorViewData>)ViewData["Color"];
+    var listImage = (List<ImageViewData>)ViewData["Image"];
+    string size = "";
+    string color = "";
+    int id;
 }
 
 
@@ -12,16 +18,24 @@
             <div class="col-md-6 col-lg-7 p-b-30">
                 <div class="p-l-25 p-r-30 p-lr-0-lg">
                     <div class="wrap-slick3 flex-sb flex-w">
-                        <div class="slick3 gallery-lb">
-                            <div class="item-slick3" data-thumb="@Url.Content(ImagePath)">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="@Url.Content(ImagePath)" alt="IMG-PRODUCT">
+                        <div class="wrap-slick3-dots"></div>
+                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="@Url.Content(ImagePath)">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
+                        <div class="slick3 gallery-lb">
+                            @foreach (var item in listImage)
+                            {
+                                var x = item.Image;
+                                <div class="item-slick3" data-thumb="/wwwroot/images/@item.Image">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img src="~/wwwroot/images/@item.Image" alt="IMG-PRODUCT">
+
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="~/wwwroot/images/@item.Image">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -44,11 +58,14 @@
                             <div class="size-203 flex-c-m respon6">
                                 Kích cỡ
                             </div>
-
+                            <input id="productid" style="display: none" value="@Model.ProductID" />
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>@Model.Size</option>
+                                    <select id="selectSize" class="js-select2" name="size">
+                                        @foreach (var item in listSize)
+                                        {
+                                            <option>@item.Size</option>
+                                        }
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -62,9 +79,11 @@
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>@Model.Color</option>
-                                      
+                                    <select id="selectColor" class="js-select2" name="color">
+                                        @foreach (var item in listColor)
+                                        {
+                                            <option>@item.Color</option>
+                                        }
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -77,7 +96,7 @@
                                 <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail addtocart" type="submit">
                                     Thêm vào giỏ
                                 </button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -137,7 +156,11 @@
                                         </span>
 
                                         <span class="stext-102 cl6 size-206">
-                                            @Model.Color
+                                            @foreach (var item in listColor)
+                                            {
+                                                color += item.Color + "  ";
+                                            }
+                                            @color;
                                         </span>
                                     </li>
 
@@ -147,7 +170,11 @@
                                         </span>
 
                                         <span class="stext-102 cl6 size-206">
-                                            @Model.Size
+                                            @foreach (var item in listSize)
+                                            {
+                                                size += item.Size + "  ";
+                                            }
+                                            @size;
                                         </span>
                                     </li>
 
@@ -265,13 +292,14 @@
         $(function () {
             $(".addtocart").click(function (e) {
                 e.preventDefault();
-                var url = "/ShoppingCart/AddToCart";
-                $.get(url, { id: @Model.ProductID }, function (data) {
+                var color1 = $("#selectColor option:selected").text();
+                var size1 = $("#selectSize option:selected").text();
+                var url = "/ShoppingCart/GetIdProductDetail";
+                $.get(url, { id: @Model.ProductID +" "+ color1 +" "+size1}, function (data) {
                     $(".ajaxcart").html(data);
                 })
-                
+
             });
         });
-
     </script>
 }

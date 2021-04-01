@@ -10,9 +10,9 @@ namespace cozaStore.BusinessLogicLayer
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGenericReposistory<Order> _orderReposistory;
         private readonly IGenericReposistory<OrderDetail> _orderDetailReposistory;
-        private readonly IGenericReposistory<Product> _productReposistory;
+        private readonly IGenericReposistory<ProductDetail> _productReposistory;
 
-        public CheckOutServices(IUnitOfWork unitOfWork, IGenericReposistory<Order> orderReposistory, IGenericReposistory<OrderDetail> orderDetailReposistory, IGenericReposistory<Product> productReposistory)
+        public CheckOutServices(IUnitOfWork unitOfWork, IGenericReposistory<Order> orderReposistory, IGenericReposistory<OrderDetail> orderDetailReposistory, IGenericReposistory<ProductDetail> productReposistory)
         {
             _unitOfWork = unitOfWork;
             _orderReposistory = orderReposistory;
@@ -28,9 +28,9 @@ namespace cozaStore.BusinessLogicLayer
                 _orderReposistory.Add(order);
                 foreach (var orderDetail in orderDetails)
                 {
-                    var product = _productReposistory.GetById(orderDetail.Product.ProductID);
-                    product.Quantity -= orderDetail.Quantity;
-                    _productReposistory.Update(product);
+                    var productDetail = _productReposistory.GetById(orderDetail.ProductDetail.ProductDetailId);
+                    productDetail.Quantity -= orderDetail.Quantity;
+                    _productReposistory.Update(productDetail);
                     orderDetail.Order = order;
                     _orderDetailReposistory.Add(orderDetail);
                 }

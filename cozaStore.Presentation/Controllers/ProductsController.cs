@@ -15,11 +15,13 @@ namespace cozaStore.Presentation.Controllers
         private readonly IProductServices _product;
         private readonly ICategoryServices _category;
         private readonly ICommentServices _comment;
-        public ProductsController(IProductServices product, ICategoryServices category, ICommentServices comment)
+        private readonly IProductDetailServices _productDetail;
+        public ProductsController(IProductServices product, ICategoryServices category, ICommentServices comment, IProductDetailServices productDetail)
         {
             _product = product;
             _category = category;
             _comment = comment;
+            _productDetail = productDetail;
         }
         // GET: Products
         public async Task<ActionResult> Index(string id, FormCollection data, int? page, string CurrentFilter)
@@ -61,7 +63,44 @@ namespace cozaStore.Presentation.Controllers
         public async Task<ActionResult> Detail(int id)
         {
             var product = await _product.GetByIdAsync(id);
-            if(product == null)
+            //get size
+            List<SizeViewData> sizes = new List<SizeViewData>();
+           
+            var size = from s in product.ProductDetails
+                       group s by new { s.Size } into g
+                       select new {g.Key.Size};
+            foreach (var item in size)
+            {
+                var aritem = item.ToString().Split(' ');
+                var s = new SizeViewData() { Size = aritem[3] };
+                sizes.Add(s);
+            }
+            ViewData["Size"] = sizes;
+            //getcolor
+            List<ColorViewData> colors = new List<ColorViewData>();
+            var color = from s in product.ProductDetails
+                       group s by new { s.Color } into g
+                       select new { g.Key.Color };
+            foreach (var item in color)
+            {
+                var aritem = item.ToString().Split(' ');
+                var c = new ColorViewData() { Color = aritem[3] };
+                colors.Add(c);
+            }
+            ViewData["Color"] = colors;
+            //get image
+            List<ImageViewData> images = new List<ImageViewData>();
+            var image = from s in product.ProductDetails
+                        group s by new { s.Image } into g
+                        select new { g.Key.Image };
+            foreach (var item in image)
+            {
+                var aritem = item.ToString().Split(' ');
+                var i = new ImageViewData() { Image = aritem[3] };
+                 images.Add(i);
+            }
+            ViewData["Image"] = images;
+            if (product == null)
             {
                 return HttpNotFound();
             }    

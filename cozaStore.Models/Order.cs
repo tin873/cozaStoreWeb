@@ -53,7 +53,7 @@ namespace cozaStore.Models
                 decimal sumTotal = 0m;
                 foreach (var item in OrderDetails)
                 {
-                    sumTotal = item.Product.Price * item.Quantity;
+                    sumTotal = item.ProductDetail.Price * item.Quantity;
                 }
                 if(Coupon != null)
                 {
@@ -68,6 +68,7 @@ namespace cozaStore.Models
             } 
         }
 
+        public int UserId { get; set; }
         public int StatusId { get; set; }
 
         public string CouponCode { get; set; }
@@ -76,7 +77,7 @@ namespace cozaStore.Models
 
         public virtual Status Status { get; set; }
 
-
+        public virtual User User { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

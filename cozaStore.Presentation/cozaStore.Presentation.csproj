@@ -147,6 +147,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -156,6 +157,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CartItem.cs" />
+    <Compile Include="ViewModels\ColorViewData.cs" />
+    <Compile Include="ViewModels\ImageViewData.cs" />
+    <Compile Include="ViewModels\SizeColorView.cs" />
+    <Compile Include="ViewModels\SizeViewData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -187,14 +192,18 @@
     <Content Include="wwwroot\images\about-01.jpg" />
     <Content Include="wwwroot\images\about-02.jpg" />
     <Content Include="wwwroot\images\ajax-loader.gif" />
-    <Content Include="wwwroot\images\aococnam1.jpg" />
+    <Content Include="wwwroot\images\aococnam1b.jpg" />
+    <Content Include="wwwroot\images\aococnam1w.jpg" />
     <Content Include="wwwroot\images\aococnam2.jpg" />
-    <Content Include="wwwroot\images\aococnu1.jpg" />
+    <Content Include="wwwroot\images\aococnu1b.jpg" />
+    <Content Include="wwwroot\images\aococnu1r.jpg" />
+    <Content Include="wwwroot\images\aococnu1y.jpg" />
     <Content Include="wwwroot\images\aodainu1.jpg" />
     <Content Include="wwwroot\images\aokhoacbo1.jpg" />
     <Content Include="wwwroot\images\aokhoacbo2.jpg" />
     <Content Include="wwwroot\images\aokhoacdoi1.jpg" />
     <Content Include="wwwroot\images\aophongdoi1.jpg" />
+    <Content Include="wwwroot\images\aophongdoi1w.jpg" />
     <Content Include="wwwroot\images\aophongnam1.jpg" />
     <Content Include="wwwroot\images\aophongnam2.jpg" />
     <Content Include="wwwroot\images\aosomiNam1.jpg" />
@@ -259,28 +268,7 @@
     <Content Include="wwwroot\images\item-cart-04.jpg" />
     <Content Include="wwwroot\images\item-cart-05.jpg" />
     <Content Include="wwwroot\images\noimage.png" />
-    <Content Include="wwwroot\images\product-01.jpg" />
-    <Content Include="wwwroot\images\product-02.jpg" />
-    <Content Include="wwwroot\images\product-03.jpg" />
     <Content Include="wwwroot\images\product-04.jpg" />
-    <Content Include="wwwroot\images\product-05.jpg" />
-    <Content Include="wwwroot\images\product-06.jpg" />
-    <Content Include="wwwroot\images\product-07.jpg" />
-    <Content Include="wwwroot\images\product-08.jpg" />
-    <Content Include="wwwroot\images\product-09.jpg" />
-    <Content Include="wwwroot\images\product-10.jpg" />
-    <Content Include="wwwroot\images\product-11.jpg" />
-    <Content Include="wwwroot\images\product-12.jpg" />
-    <Content Include="wwwroot\images\product-13.jpg" />
-    <Content Include="wwwroot\images\product-14.jpg" />
-    <Content Include="wwwroot\images\product-15.jpg" />
-    <Content Include="wwwroot\images\product-16.jpg" />
-    <Content Include="wwwroot\images\product-detail-01.jpg" />
-    <Content Include="wwwroot\images\product-detail-02.jpg" />
-    <Content Include="wwwroot\images\product-detail-03.jpg" />
-    <Content Include="wwwroot\images\product-min-01.jpg" />
-    <Content Include="wwwroot\images\product-min-02.jpg" />
-    <Content Include="wwwroot\images\product-min-03.jpg" />
     <Content Include="wwwroot\images\quanbonu1.jpg" />
     <Content Include="wwwroot\images\quanbonu2.jpg" />
     <Content Include="wwwroot\images\quanbonu3.jpg" />
@@ -774,6 +762,7 @@
     <Content Include="wwwroot\vendor\slick\slick.min.js" />
     <Content Include="wwwroot\vendor\sweetalert\sweetalert.min.js" />
     <Content Include="wwwroot\vendor\tilt\tilt.jquery.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -930,9 +919,14 @@
     <Content Include="Views\ShoppingCart\CartMini.cshtml" />
     <Content Include="Views\CheckOut\Index.cshtml" />
     <Content Include="Views\CheckOut\CheckOutIsOk.cshtml" />
+    <Content Include="Views\Shared\_ProductOverView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

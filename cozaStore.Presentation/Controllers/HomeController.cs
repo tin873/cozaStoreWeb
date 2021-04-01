@@ -25,13 +25,13 @@ namespace cozaStore.Presentation.Controllers
         }
         public ActionResult Index()
         {
-            var products = _productServices.GetTop(orderBy: x => x.OrderBy(p => p.Quantity));
+            var products = _productServices.GetTop(orderBy: x => x.OrderBy(p => p.ProductName));
             return View(products);
         }
 
         public PartialViewResult _TopProductNew()
         {
-            var products = _productServices.GetTop(orderBy: x => x.OrderByDescending(p => p.Quantity));
+            var products = _productServices.GetTop(orderBy: x => x.OrderByDescending(p => p.ProductName));
             return PartialView(products);
         }
 

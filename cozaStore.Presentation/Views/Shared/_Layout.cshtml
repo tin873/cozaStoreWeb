@@ -34,7 +34,12 @@
     <link rel="stylesheet" type="text/css" href="~/wwwroot/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/wwwroot/css/main.css">
     <!--===============================================================================================-->
-    
+    <style>
+        div.menu-desktop ul li div a:hover {
+            background: content-box;
+            color: #717fe0;
+        }
+    </style>
 </head>
 <body class="animsition">
 
@@ -97,12 +102,15 @@
                                 <a href="@Url.Action("Index", "Products")">Sản phẩm</a>
                             </li>
 
-                            <li class="label1" data-label1="hot">
-                                <a href="@Url.Action("Index", "ShoppingCart")">Giỏ hàng</a>
-                            </li>
 
-                            <li>
-                                <a href="blog.html">Blog</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Giỏ hàng
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: content-box">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "ShoppingCart")">Xem giỏ hàng</a>
+                                    <a class="dropdown-item" href="#">Đơn hàng đã mua</a>
+                                </div>
                             </li>
 
                             <li>

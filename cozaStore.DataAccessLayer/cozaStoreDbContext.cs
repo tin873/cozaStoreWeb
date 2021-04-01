@@ -22,6 +22,8 @@ namespace cozaStore.DataAccessLayer
 
         public virtual DbSet<Product> Products { get; set; }
 
+        public virtual DbSet<ProductDetail> ProductDetails { get; set; }
+
         public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<Status> Statuses { get; set; }
@@ -84,10 +86,10 @@ namespace cozaStore.DataAccessLayer
                 .WithRequired(e => e.Order)
                 .WillCascadeOnDelete(false);
 
-            //product with orderDetails
-            modelBuilder.Entity<Product>()
+            //productDetail with orderDetails
+            modelBuilder.Entity<ProductDetail>()
                 .HasMany(e => e.OrderDetails)
-                .WithRequired(e => e.Product)
+                .WithRequired(e => e.ProductDetail)
                 .WillCascadeOnDelete(false);
 
             //product with comment
@@ -107,6 +109,18 @@ namespace cozaStore.DataAccessLayer
             modelBuilder.Entity<Coupon>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Coupon)
+                .WillCascadeOnDelete(false);
+
+            //User with Order
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Orders)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            //product with prodoductDetail
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.ProductDetails)
+                .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
         }
     }

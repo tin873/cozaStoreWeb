@@ -6,15 +6,15 @@ namespace cozaStore.Presentation
     {
         public int Quantity { get; set; }
 
-        public Product Product { get; set; }
+        public ProductDetail ProductDetail { get; set; }
         
         public int QuantityReal { get
             {
-                return Product.Quantity;
+                return ProductDetail.Quantity;
             } 
         }
 
-        public decimal Total { get { return Product.Price * Quantity; } }
+        public decimal Total { get { return ProductDetail.Price * Quantity; } }
 
         
     }

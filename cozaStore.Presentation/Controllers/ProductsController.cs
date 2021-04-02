@@ -144,15 +144,8 @@ namespace cozaStore.Presentation.Controllers
                 Content = content,
                 Product = product
             };
-            try
-            {
                 _comment.Create(comment);
                 return RedirectToAction("Detail", new { id = id });
-            }
-            catch (Exception)
-            {
-                throw new Exception("Lỗi nhập dữ liệu");
-            }
         }
         
     }

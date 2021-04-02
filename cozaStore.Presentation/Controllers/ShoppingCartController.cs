@@ -113,7 +113,7 @@ namespace cozaStore.Presentation.Controllers
             model.Quantity = qty1;
             Session[Constant.Cart] = cart;
 
-            return PartialView();
+            return RedirectToAction("CartPartial");
         }
         public ActionResult CartPartial()
         {

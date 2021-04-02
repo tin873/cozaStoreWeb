@@ -1018,7 +1018,6 @@
     <Content Include="Views\CheckOut\CheckOutIsOk.cshtml" />
     <Content Include="Views\Shared\_ProductOverView.cshtml" />
     <Content Include="Views\ShoppingCart\_ErrorOrder.cshtml" />
-    <Content Include="Views\ShoppingCart\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

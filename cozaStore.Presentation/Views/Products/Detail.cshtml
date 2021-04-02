@@ -102,10 +102,9 @@
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
                                 </div>
-                                <div class="ajaxcar">
+                                <div id="error" class="ajaxcar">
 
                                 </div>
-                                @{ Html.RenderAction("_ErrorOrder", "ShoppingCart");}
                                 <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  addtocart" type="submit">
                                     Thêm vào giỏ
                                 </button>
@@ -268,16 +267,12 @@
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" value="@Model.ProductID" type="text" name="idproduct" style="display: none;">
                                             </div>
                                         </div>
-                                        <div class="row p-b-25">
-                                            <p>hello</p>
-                                        </div>
                                         <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" type="submit">
                                             Gửi
                                         </button>
 
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -312,9 +307,21 @@
                 var url = "/ShoppingCart/GetIdProductDetail";
                 var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
                 swal(nameProduct, "đã thêm vào giỏ hàng !", "success")
+                
                 $.get(url, { id: @Model.ProductID +" " + color1 + " " + size1 + " " + qty }, function (data) {
-                    $(".ajaxcar").html(data);
+                 if (data.indexOf('^') > 0)
+                 {
+                     $(".ajaxcart").html(data);
+                     document.getElementById("error").style.display = "none";
+                }
+                else
+                    {
+                     document.getElementById("error").style.display = "block";
+                     $(".ajaxcar").html(data);
+                }
+                    
                 })
+                
                 
                     //.then((value) => {
                     //    location.reload();

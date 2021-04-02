@@ -80,9 +80,6 @@ namespace cozaStore.Presentation
             container.RegisterType<IGenericReposistory<Coupon>, GenericReposistory<Coupon>>();
             container.RegisterType<ICouponServices, CouponServices>();
 
-            container.RegisterType<IGenericReposistory<Status>, GenericReposistory<Status>>();
-            container.RegisterType<IStatusServices, StatusServices>();
-
             container.RegisterType<IGenericReposistory<ProductDetail>, GenericReposistory<ProductDetail>>();
             container.RegisterType<IProductDetailServices, ProductDetailServices>();
         }

@@ -95,7 +95,7 @@ namespace cozaStore.Presentation.Controllers
                     Session["addressAdmin"] = user.Address;
                     Session["emailAdmin"] = user.Email;
                     Session["phoneAdmin"] = user.Phone;
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    return RedirectToAction("Index", "AdminHome", new { area = "Admin" });
                 }
             }
             else

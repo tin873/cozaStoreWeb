@@ -26,8 +26,6 @@ namespace cozaStore.DataAccessLayer
 
         public virtual DbSet<Role> Roles { get; set; }
 
-        public virtual DbSet<Status> Statuses { get; set; }
-
         public virtual DbSet<Supplier> Suppliers { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
@@ -71,57 +69,57 @@ namespace cozaStore.DataAccessLayer
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Category)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //Supplier with product one more
             modelBuilder.Entity<Supplier>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Supplier)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
 
             //Order with OrderDetail
             modelBuilder.Entity<Order>()
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //productDetail with orderDetails
             modelBuilder.Entity<ProductDetail>()
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.ProductDetail)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //product with comment
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.Comments)
                 .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
 
             //Role with User
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Users)
                 .WithRequired(e => e.Role)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //Coupon with Order
             modelBuilder.Entity<Coupon>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Coupon)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //User with Order
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             //product with prodoductDetail
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.ProductDetails)
                 .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
         }
     }
 }

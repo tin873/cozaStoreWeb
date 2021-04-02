@@ -79,6 +79,10 @@
     <Compile Include="Migrations\202104010547148_CozaStoreV6.Designer.cs">
       <DependentUpon>202104010547148_CozaStoreV6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104020213395_CozaStoreV7.cs" />
+    <Compile Include="Migrations\202104020213395_CozaStoreV7.Designer.cs">
+      <DependentUpon>202104020213395_CozaStoreV7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposistory\GenericReposistory.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104010547148_CozaStoreV6.resx">
       <DependentUpon>202104010547148_CozaStoreV6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104020213395_CozaStoreV7.resx">
+      <DependentUpon>202104020213395_CozaStoreV7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

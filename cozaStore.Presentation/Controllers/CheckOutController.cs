@@ -14,16 +14,14 @@ namespace cozaStore.Presentation.Controllers
         private readonly IOrderServices _order;
         private readonly ICouponServices _coupon;
         private readonly ICheckOutServices _checkOut;
-        private readonly IStatusServices _status;
         private readonly IUserServieces _user;
-        public CheckOutController(IProductDetailServices product, IOrderServices order, IOrderDetailServices orderDetail, ICouponServices coupon, ICheckOutServices checkOut, IStatusServices status, IUserServieces user)
+        public CheckOutController(IProductDetailServices product, IOrderServices order, IOrderDetailServices orderDetail, ICouponServices coupon, ICheckOutServices checkOut, IUserServieces user)
         {
             _productDetail = product;
             _order = order;
             _orderDetail = orderDetail;
             _coupon = coupon;
             _checkOut = checkOut;
-            _status = status;
             _user = user;
         }
         [HttpGet]
@@ -99,7 +97,6 @@ namespace cozaStore.Presentation.Controllers
             var phone = data["phone"];
             var address = data["address"];
             var description = data["description"];
-            var status = _status.GetById(1);
             var userId = Session["userId"];
             User user = _user.GetById(userId);
             List<OrderDetail> orderDetails = new List<OrderDetail>();
@@ -123,13 +120,12 @@ namespace cozaStore.Presentation.Controllers
                 Phone = phone,
                 Description = description,
                 Coupon = coupon,
-                Status = status,
+                Status = Status.waitForConfirm,
                 User = user
             };
             _checkOut.CheckOut(order, orderDetails);
             cartItems.Clear();
             Session[Constant.Code] = null;
-            coupon = null;
             return RedirectToAction("CheckOutIsOk");
         }
 

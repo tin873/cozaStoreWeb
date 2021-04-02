@@ -142,12 +142,11 @@ else
                     $("td.total" + productId).html(priceHtml);
 
                     var gt = parseInt($("td.grandtotal").text());
-                    var grandtotal = (gt + data.price).toFixed(0)+"đ";
-
+                    var grandtotal = (gt + data.price).toFixed(0) + "đ";
+                    location.reload();
                     $("td.grandtotal span").text(grandtotal);
                 }).done(function (data) {
                     var url2 = "/ShoppingCart/PaypalPartial";
-                    location.reload();
                     $.get(url2, {}, function (data) {
                         $('div.paypaldiv').html(data);
                     });
@@ -181,7 +180,6 @@ else
 
                         var gt = parseFloat($("td.grandtotal span").text());
                         var grandtotal = (gt - data.price).toFixed(0) + "đ";
-                        location.reload();
                         $("td.grandtotal span").text(grandtotal);
                     }
 

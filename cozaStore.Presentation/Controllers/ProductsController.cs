@@ -100,6 +100,7 @@ namespace cozaStore.Presentation.Controllers
                  images.Add(i);
             }
             ViewData["Image"] = images;
+           
             if (product == null)
             {
                 return HttpNotFound();
@@ -153,5 +154,6 @@ namespace cozaStore.Presentation.Controllers
                 throw new Exception("Lỗi nhập dữ liệu");
             }
         }
+        
     }
 }

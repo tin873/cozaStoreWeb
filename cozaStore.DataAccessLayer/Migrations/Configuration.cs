@@ -87,37 +87,6 @@
             context.Coupons.AddRange(coupons);
             #endregion
 
-            #region Add Status
-            var statuses = new List<Status>()
-            {
-                new Status()
-                {
-                    StatusId = 1,
-                    StatusName = "Đã đặt",
-                    Description = "Hàng đã được đặt!"
-                },
-                new Status()
-                {
-                    StatusId = 2,
-                    StatusName = "Đang vận chuyển",
-                    Description = "Hàng đang được vận chuyển!"
-                },
-                 new Status()
-                {
-                    StatusId = 3,
-                    StatusName = "Đã nhận hàng",
-                    Description = "Hàng đã được nhận bởi khách hàng!"
-                },
-                  new Status()
-                {
-                    StatusId = 4,
-                    StatusName = "Đã hủy",
-                    Description = "Hàng đã được hủy!"
-                }
-            };
-            context.Statuses.AddRange(statuses);
-            #endregion
-
             #region Add Supplier
             var suppliers = new List<Supplier>()
             {

@@ -22,7 +22,7 @@ namespace cozaStore.Presentation.Controllers
         {
             var cart = Session[Constant.Cart];
             var list = new List<CartItem>();
-            if(cart != null)
+            if (cart != null)
             {
                 list = (List<CartItem>)cart;
             }
@@ -31,7 +31,7 @@ namespace cozaStore.Presentation.Controllers
             {
                 total += item.Total;
             }
-            ViewBag.GrandTotal = total.ToString("#,###");
+            ViewBag.GrandTotal = total;
             return View(list);
         }
 
@@ -41,27 +41,63 @@ namespace cozaStore.Presentation.Controllers
             int productId = int.Parse(arr[0]);
             string color = arr[1];
             string size = arr[2];
+            int qty = int.Parse(arr[3]);
             Product product = await _product.GetByIdAsync(productId);
-            ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper())&& x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
+            ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper()) && x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
             int id1 = productDetail.ProductDetailId;
-            return RedirectToAction("AddToCart", new { id = id1 });
+
+            if (productDetail.Quantity >= qty)
+            {
+                return RedirectToAction("AddToCart", new { id = id1 + " " + qty });
+            }
+            else
+            {
+                return RedirectToAction("_ErrorOrder", new { idQty = id1 + " " + qty });
+            }
         }
-        public async Task<ActionResult> AddToCart(int id)
+        public PartialViewResult _ErrorOrder(string idQty)
         {
+            //check quantity prooduct
+            if (idQty != null)
+            {
+                var arr = idQty.Split(' ');
+                int ProductDetailId = int.Parse(arr[0]);
+                int qty = int.Parse(arr[1]);
+                ProductDetail productDetail = _productDetail.GetById(ProductDetailId);
+                if (productDetail.Quantity == 0)
+                {
+                    ViewBag.message = "Sản phẩm hiện đã hết hàng vui lòng chọn sản phẩm khác!";
+                }
+                else
+                {
+                    if (productDetail.Quantity < qty)
+                    {
+                        ViewBag.message = "Hiện chỉ còn " + productDetail.Quantity + " sản phẩm!";
+                    }
+                }    
+                
+            }
+            return PartialView();
+        }
+        public async Task<ActionResult> AddToCart(string id)
+        {
+            var arr = id.Split(' ');
+            int id1 = int.Parse(arr[0]);
+            int qty = int.Parse(arr[1]);
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem> ?? new List<CartItem>();
 
             CartItem model = new CartItem();
 
-            ProductDetail product = await _productDetail.GetByIdAsync(id);
+            ProductDetail product = await _productDetail.GetByIdAsync(id1);
 
-            var itemInCart = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == id);
+            var itemInCart = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == id1);
 
             if (itemInCart == null)
             {
                 cart.Add(new CartItem()
                 {
                     ProductDetail = product,
-                    Quantity = 1,
+                    Quantity = qty,
                 });
             }
             else
@@ -69,15 +105,15 @@ namespace cozaStore.Presentation.Controllers
                 itemInCart.Quantity++;
             }
 
-            int qty = 0;
+            int qty1 = 0;
             foreach (var item in cart)
             {
-                qty += item.Quantity;
+                qty1 += item.Quantity;
             }
-            model.Quantity = qty;
+            model.Quantity = qty1;
             Session[Constant.Cart] = cart;
 
-            return RedirectToAction("CartPartial");
+            return PartialView();
         }
         public ActionResult CartPartial()
         {
@@ -139,7 +175,7 @@ namespace cozaStore.Presentation.Controllers
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
 
-            CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId) ;
+            CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId);
 
             cart.Remove(item);
 
@@ -160,5 +196,6 @@ namespace cozaStore.Presentation.Controllers
             ViewBag.SumTotal = total;
             return PartialView(list);
         }
+
     }
 }

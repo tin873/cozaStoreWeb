@@ -15,8 +15,7 @@
 <!-- Shoping Cart -->
 @if (Model.Count > 0)
 {
-    <form class="bg0 p-t-75 p-b-85" style="padding-top: 100px;">
-        <div class="container">
+        <div class="container" style="padding-top: 100px;">
             <div class="row">
                 <div class="col-lg-12 col-xl-12 m-lr-auto m-b-50">
                     <div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -49,17 +48,25 @@
                                                 </a>
 
                                                 <input class="mtext-104 cl3 txt-center num-product qty@(item.ProductDetail.ProductDetailId)" type="number" name="num-product1" value="@item.Quantity">
-                                                @if (item.Quantity == item.QuantityReal)
+
+                                                @if (item.ProductDetail.Quantity == 1)
                                                 {
-                                                    <button id="btnup" class=" fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" disabled onclick="func()">
+                                                    <button id="btnup" class="incrproduct fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.ProductDetail.ProductDetailId" disabled>
                                                     </button>
                                                 }
                                                 else
                                                 {
-                                                    <a class="incrproduct fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.ProductDetail.ProductDetailId">
-                                                    </a>
+                                                    <button id="btnup" class="incrproduct fs-16 zmdi zmdi-plus btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="@item.ProductDetail.ProductDetailId">
+                                                    </button>
                                                 }
+
+
                                             </div>
+                                            @if(item.ProductDetail.Quantity == 1)
+                                            {
+                                                <p style="color:red;">Hiện chỉ còn 1 sản phẩm!</p>
+                                            }
+                                            <div id="errorQty@(item.ProductDetail.ProductDetailId)" class="errorQty@(item.ProductDetail.ProductDetailId)"></div>
                                         </td>
                                         <td class="column-1 total@(item.ProductDetail.ProductDetailId)" style="width: 20%; text-align:center;">@item.Total.ToString("#,###")đ</td>
                                     </tr>
@@ -75,7 +82,7 @@
                         </div>
 
                         <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-
+                           
                             @if (Session["userId"] != null)
                             {
                                 <a href="@Url.Action("Index", "CheckOut")">
@@ -97,7 +104,6 @@
                 </div>
             </div>
         </div>
-    </form>
 }
 else
 {
@@ -117,7 +123,7 @@ else
     <script>
 
         function func() {
-            document.getElementById("btnup").disabled = tre;
+            document.getElementById("btnup").disabled = true;
         }
 
         $(function () {
@@ -126,31 +132,52 @@ else
             * Increment product
             */
 
-            $("a.incrproduct").click(function (e) {
+            $("button.incrproduct").click(function (e) {
                 e.preventDefault();
 
                 var productId = $(this).data("id");
                 var url = "/ShoppingCart/IncrementProduct";
 
                 $.getJSON(url, { productId: productId }, function (data) {
+                    
 
                     $("input.qty" + productId).html(data.qty);
+                    if (data.qty > 0) {
+                        var price = data.qty * data.price;
+                        var priceHtml = price.toFixed(0) + "đ";
 
-                    var price = data.qty * data.price;
-                    var priceHtml = price.toFixed(0)+"đ";
+                        $("td.total" + productId).html(priceHtml);
 
-                    $("td.total" + productId).html(priceHtml);
+                        var gt = parseInt($("td.grandtotal").text());
+                        var grandtotal = (gt + data.price).toFixed(0) + "đ";
+                        $("td.grandtotal span").text(grandtotal);
+                        if (data.qtyReal > 0) {
+                            var price = data.qty * data.price;
+                            var priceHtml = price.toFixed(0) + "đ";
+                            
+                            $("td.total" + productId).html(priceHtml);
 
-                    var gt = parseInt($("td.grandtotal").text());
-                    var grandtotal = (gt + data.price).toFixed(0) + "đ";
-                    location.reload();
-                    $("td.grandtotal span").text(grandtotal);
-                }).done(function (data) {
-                    var url2 = "/ShoppingCart/PaypalPartial";
-                    $.get(url2, {}, function (data) {
-                        $('div.paypaldiv').html(data);
-                    });
-                });
+                            var gt = parseInt($("td.grandtotal").text());
+                            var grandtotal = (gt + data.price).toFixed(0) + "đ";
+                            $("td.grandtotal span").text(grandtotal);
+                            $("button.incrproduct").prop('disabled', true);
+                            document.getElementById("errorQty" + productId).style.display = "block";
+                            var url1 = "/ShoppingCart/_ErrorQuantity";
+                            $.get(url1, { id: productId }, function (data) {
+                                $(".errorQty" + productId).html(data);
+                            })
+                        }
+                    }
+                    else {
+                        $("button.incrproduct").prop('disabled', true);
+                        document.getElementById("errorQty" + productId).style.display = "block";
+                        var url1 = "/ShoppingCart/_ErrorQuantity";
+                        $.get(url1, { id: productId }, function (data) {
+                            $(".errorQty"+productId).html(data);
+                        })
+                    }
+                    
+                })
             });
 
             /*
@@ -163,8 +190,10 @@ else
                 var $this = $(this);
                 var productId = $(this).data("id");
                 var url = "/ShoppingCart/DecrementProduct";
-
+                $("button.incrproduct").prop('disabled', false);
+                document.getElementById("errorQty" + productId).style.display = "none";
                 $.getJSON(url, { productId: productId }, function (data) {
+                    
                     if (data.qty == 0) {
                         $this.parent().parent().fadeOut("fast", function () {
                             location.reload();
@@ -183,13 +212,7 @@ else
                         $("td.grandtotal span").text(grandtotal);
                     }
 
-                }).done(function (data) {
-                    var url2 = "/ShoppingCart/PaypalPartial";
-
-                    $.get(url2, {}, function (data) {
-                        $('div .paypaldiv').html(data);
-                    });
-                });
+                })
             });
 
             /*

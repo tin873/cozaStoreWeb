@@ -45,15 +45,7 @@ namespace cozaStore.Presentation.Controllers
             Product product = await _product.GetByIdAsync(productId);
             ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper()) && x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
             int id1 = productDetail.ProductDetailId;
-
-            if (productDetail.Quantity >= qty)
-            {
-                return RedirectToAction("AddToCart", new { id = id1 + " " + qty });
-            }
-            else
-            {
-                return RedirectToAction("_ErrorOrder", new { idQty = id1 + " " + qty });
-            }
+            return RedirectToAction("AddToCart", new { id = id1 + " " + qty });
         }
         public PartialViewResult _ErrorOrder(string idQty)
         {
@@ -64,18 +56,36 @@ namespace cozaStore.Presentation.Controllers
                 int ProductDetailId = int.Parse(arr[0]);
                 int qty = int.Parse(arr[1]);
                 ProductDetail productDetail = _productDetail.GetById(ProductDetailId);
-                if (productDetail.Quantity == 0)
+                if (arr.Length > 2)
                 {
-                    ViewBag.message = "Sản phẩm hiện đã hết hàng vui lòng chọn sản phẩm khác!";
+                    int qtyItem = int.Parse(arr[2]);
+                    if ((productDetail.Quantity - qty - qtyItem) < 0)
+                    {
+                        ViewBag.message = "Hiện chỉ còn " + (productDetail.Quantity - qtyItem) + " sản phẩm!";
+                    }
                 }
                 else
                 {
-                    if (productDetail.Quantity < qty)
+                    if (productDetail.Quantity == 0)
                     {
-                        ViewBag.message = "Hiện chỉ còn " + productDetail.Quantity + " sản phẩm!";
+                        ViewBag.message = "Sản phẩm hiện đã hết hàng vui lòng chọn sản phẩm khác!";
                     }
-                }    
-                
+                    else
+                    {
+                        if (productDetail.Quantity <= qty)
+                        {
+                            if ((productDetail.Quantity - qty) >= 0)
+                            {
+                                ViewBag.message = "Hiện chỉ còn " + (productDetail.Quantity - qty) + " sản phẩm!";
+                            }
+                            else
+                            {
+                                ViewBag.message = "Hiện chỉ còn " + (productDetail.Quantity) + " sản phẩm!";
+                            }
+                        }
+
+                    }
+                }
             }
             return PartialView();
         }
@@ -94,15 +104,29 @@ namespace cozaStore.Presentation.Controllers
 
             if (itemInCart == null)
             {
-                cart.Add(new CartItem()
+                if (product.Quantity >= qty)
                 {
-                    ProductDetail = product,
-                    Quantity = qty,
-                });
+                    cart.Add(new CartItem()
+                    {
+                        ProductDetail = product,
+                        Quantity = qty,
+                    });
+                }
+                else
+                {
+                    return RedirectToAction("_ErrorOrder", new { idQty = id1 + " " + qty });
+                }
             }
             else
             {
-                itemInCart.Quantity++;
+                if ((itemInCart.Quantity + qty) <= product.Quantity)
+                {
+                    itemInCart.Quantity += qty;
+                }
+                else
+                {
+                    return RedirectToAction("_ErrorOrder", new { idQty = id1 + " " + qty + " " + itemInCart.Quantity });
+                }
             }
 
             int qty1 = 0;
@@ -141,14 +165,38 @@ namespace cozaStore.Presentation.Controllers
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
 
+            ProductDetail productDetail = _productDetail.GetById(productId);
+
             CartItem item = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == productId);
 
-            item.Quantity++;
+            if (productDetail.Quantity > item.Quantity+1)
+            {
+                item.Quantity++;
+                var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
 
-            var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                if(productDetail.Quantity == item.Quantity + 1)
+                {
+                    item.Quantity++;
+                    var result = new { qty = item.Quantity, price = item.ProductDetail.Price, qtyReal = productDetail.Quantity };
 
-            return Json(result, JsonRequestBehavior.AllowGet);
-
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }    
+                else
+                {
+                    var result = new { qty = 0, price = 0 };
+                    return Json(result, JsonRequestBehavior.AllowGet);
+                }    
+            }
+        }
+        public PartialViewResult _ErrorQuantity(int id)
+        {
+            ProductDetail productDetail = _productDetail.GetById(id);
+            ViewBag.errorQtity = "Hiện chỉ còn " + productDetail.Quantity + " sản phẩm!";
+            return PartialView();
         }
         public ActionResult DecrementProduct(int productId)
         {

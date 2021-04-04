@@ -103,15 +103,24 @@
                             </li>
 
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Giỏ hàng
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: content-box; border: none;">
-                                    <a class="dropdown-item" href="@Url.Action("Index", "ShoppingCart")">Xem giỏ hàng</a>
-                                    <a class="dropdown-item" href="#">Đơn hàng đã mua</a>
-                                </div>
-                            </li>
+                            @if (Session["UserId"] != null)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Giỏ hàng
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: content-box; border: none;">
+                                        <a class="dropdown-item" href="@Url.Action("Index", "ShoppingCart")">Xem giỏ hàng</a>
+                                        <a class="dropdown-item" href="@Url.Action("Index", "OrderHistory")">Đơn hàng đã mua</a>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index", "ShoppingCart")">Giỏ hàng</a>
+                                </li>
+                            }
 
                             <li>
                                 <a href="about.html">About</a>

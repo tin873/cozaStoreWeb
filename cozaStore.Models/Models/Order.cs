@@ -55,19 +55,31 @@ namespace cozaStore.Models
                 {
                     sumTotal = item.ProductDetail.Price * item.Quantity;
                 }
-                if(Coupon != null)
+                if (Coupon != null)
                 {
                     sumTotal -= (Coupon.Discount * sumTotal) / 100;
                     return sumTotal;
-                }    
+                }
                 else
                 {
                     return sumTotal;
-                }    
-                
-            } 
+                }
+
+            }
         }
-         
+
+        public decimal SumTotalNoDiscout
+        {
+            get
+            {
+                decimal sumTotal = 0m;
+                foreach (var item in OrderDetails)
+                {
+                    sumTotal = item.ProductDetail.Price * item.Quantity;
+                }
+                return sumTotal;
+            }
+        }
         public Status Status { get; set; }
 
         public int UserId { get; set; }

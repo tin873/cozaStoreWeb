@@ -310,8 +310,6 @@
                 $.get(url, { id: @Model.ProductID +" " + color1 + " " + size1 + " " + qty }, function (data) {
                  if (data.indexOf('^') > 0)
                  {
-                     
-                     
                      $(".ajaxcart").html(data);
                      document.getElementById("error").style.display = "none";
                      swal(nameProduct, "đã thêm vào giỏ hàng !", "success")
@@ -323,8 +321,6 @@
                 }
                     
                 })
-                
-                
                     //.then((value) => {
                     //    location.reload();
                     //});

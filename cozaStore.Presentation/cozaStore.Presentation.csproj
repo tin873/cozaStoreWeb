@@ -151,6 +151,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderHistoryController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +287,7 @@
     <Content Include="wwwroot\images\blog-05.jpg" />
     <Content Include="wwwroot\images\blog-06.jpg" />
     <Content Include="wwwroot\images\chanvaynu.jpg" />
+    <Content Include="wwwroot\images\emtyOrder.png" />
     <Content Include="wwwroot\images\gallery-01.jpg" />
     <Content Include="wwwroot\images\gallery-02.jpg" />
     <Content Include="wwwroot\images\gallery-03.jpg" />
@@ -1019,6 +1021,13 @@
     <Content Include="Views\Shared\_ProductOverView.cshtml" />
     <Content Include="Views\ShoppingCart\_ErrorOrder.cshtml" />
     <Content Include="Views\ShoppingCart\_ErrorQuantity.cshtml" />
+    <Content Include="Views\OrderHistory\Index.cshtml" />
+    <Content Include="Views\OrderHistory\_WaitConfirm.cshtml" />
+    <Content Include="Views\OrderHistory\_Delivering.cshtml" />
+    <Content Include="Views\OrderHistory\_Deliverded.cshtml" />
+    <Content Include="Views\OrderHistory\_Cancelled.cshtml" />
+    <Content Include="Views\OrderHistory\OrderHistoryDetail.cshtml" />
+    <Content Include="Views\Shared\_OrderHistoryOverView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

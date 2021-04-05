@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Transactions;
+using cozaStore.Common;
+
 namespace cozaStore.Presentation.Controllers
 {
     public class OrderHistoryController : Controller
@@ -55,7 +57,51 @@ namespace cozaStore.Presentation.Controllers
 
             return View(orders);
         }
+        /// <summary>
+        /// the method is re-order
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> OrderRealease(int id)
+        {
+            int dem = 0;
+            Order orders = await _order.GetByIdAsync(id);
+            List<CartItem> cart = Session[Constant.Cart] as List<CartItem> ?? new List<CartItem>();
+            foreach (var orderDetail in orders.OrderDetails)
+            {
+                ProductDetail product = await _productDetail.GetByIdAsync(orderDetail.ProductDetail.ProductDetailId);
+                if (product.Quantity >= 1)
+                {
+                    dem++;
+                }    
+            }
+            if(dem == orders.OrderDetails.Count())
+            {
+                foreach (var orderDetail in orders.OrderDetails)
+                {
+                    var itemInCart = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == orderDetail.ProductDetail.ProductDetailId);
+                    if(itemInCart == null)
+                    {
+                        cart.Add(new CartItem()
+                        {
+                            ProductDetail = orderDetail.ProductDetail,
+                            Quantity = 1,
+                        });
+                    } 
+                }
+                Session[Constant.Cart] = cart;
+                return RedirectToAction("Index","ShoppingCart");
+            }   
+            else
+            {
+                return RedirectToAction("_ErrorOrder");
+            }    
+        }
 
+        public PartialViewResult _ErrorOrder()
+        {
+            return PartialView();
+        }
         /// <summary>
         /// all methods have display partial view of order history
         /// </summary>

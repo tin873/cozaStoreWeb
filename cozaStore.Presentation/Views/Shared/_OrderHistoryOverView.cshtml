@@ -45,7 +45,7 @@
             <p style="padding-left:160px;">Giảm: @(Model.Coupon.Discount)%</p>
             <p style="padding-left:160px;">Tổng số tiền: <span style="color: red;">@Model.SumTotal.ToString("#,###")đ</span></p>
             <div style="padding-top: 10px; padding-bottom: 50px;">
-                <button type="button" class="btn btn-success">Mua hàng</button>
+                <button type="button" class="btn btn-success orderrealease@(Model.OrderID)">Mua Lại</button>
                 <button onclick="location.href = '@Url.Action("OrderHistoryDetail","OrderHistory", new { id = Model.OrderID})'" type="button" class="btn btn-outline-secondary">Xem chi tiết đơn hàng</button>
                 @if (Model.Status.ToString().Equals("waitForConfirm"))
                 {
@@ -83,6 +83,20 @@
                     //.then((value) => {
                     //    location.reload();
                     //});
+            });
+        });
+     $(function () {
+         $(".orderrealease"+@(Model.OrderID)).click(function (e) {
+                e.preventDefault();
+             var url = "/OrderHistory/OrderRealease";
+             $.get(url, { id: @Model.OrderID }, function (data) {
+                 if (data.indexOf('D') > 0) {
+                     window.location.href = "/ShoppingCart/Index"
+                 }
+                 else {
+                     swal("Sản phẩm này không tồn tại hoặc đã hết!");
+                 }
+             })
             });
         });
 </script>

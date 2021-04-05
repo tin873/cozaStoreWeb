@@ -1028,6 +1028,7 @@
     <Content Include="Views\OrderHistory\_Cancelled.cshtml" />
     <Content Include="Views\OrderHistory\OrderHistoryDetail.cshtml" />
     <Content Include="Views\Shared\_OrderHistoryOverView.cshtml" />
+    <Content Include="Views\OrderHistory\_ErrorOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

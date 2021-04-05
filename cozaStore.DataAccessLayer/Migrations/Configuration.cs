@@ -308,7 +308,7 @@
                     Image = "aococnam1b.jpg",
                     Price = 250000,
                     Size = "M",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -318,7 +318,7 @@
                     Image = "aococnam1b.jpg",
                     Price = 250000,
                     Size = "L",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -328,7 +328,7 @@
                     Image = "aococnam1b.jpg",
                     Price = 250000,
                     Size = "XL",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -344,7 +344,7 @@
                 new ProductDetail()
                 {
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
-                    ProductName = "Áo somi M2SMN3-XL-W",
+                    ProductName = "Áo somi M2SMN3-L-W",
                     Image = "aococnam1w.jpg",
                     Price = 250000,
                     Size = "L",
@@ -354,7 +354,7 @@
                 new ProductDetail()
                 {
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
-                    ProductName = "Áo somi M2SMN3-XL-W",
+                    ProductName = "Áo somi M2SMN3-M-W",
                     Image = "aococnam1w.jpg",
                     Price = 250000,
                     Size = "M",
@@ -368,7 +368,7 @@
                     Image = "aococnam2.jpg",
                     Price = 250000,
                     Size = "M",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -378,7 +378,7 @@
                     Image = "aococnam2.jpg",
                     Price = 250000,
                     Size = "L",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -388,7 +388,7 @@
                     Image = "aococnam2.jpg",
                     Price = 250000,
                     Size = "XL",
-                    Color = "Xanh nước biển",
+                    Color = "Xanh",
                     Quantity = 20
                 },
                 new ProductDetail()
@@ -397,7 +397,7 @@
                     ProductName = "Áo Phông M2SPN2-F-C",
                     Image = "aophongnam1.jpg",
                     Price = 300000,
-                    Size = "Free",
+                    Size = "Free size",
                     Color = "Cam",
                     Quantity = 20
                 },

@@ -95,6 +95,7 @@ namespace cozaStore.Presentation.Controllers
                     Session["addressAdmin"] = user.Address;
                     Session["emailAdmin"] = user.Email;
                     Session["phoneAdmin"] = user.Phone;
+                    Session["adminId"] = user.UserID;
                     return RedirectToAction("Index", "AdminHome", new { area = "Admin" });
                 }
             }
@@ -118,24 +119,32 @@ namespace cozaStore.Presentation.Controllers
             var address = data["address"];
             var phone = data["phone"];
             var users = _user.Find(filter: x => x.Email.Equals(email));
+            var users1 = _user.Find(filter: x => x.Phone.Equals(phone));
             var role = await _role.GetByIdAsync(2);
             if (users == null)
             {
-                var user = new User()
+                if(users1 == null)
                 {
-                    FullName = fullName,
-                    Email = email,
-                    PassWord = pass,
-                    Address = address,
-                    Phone = phone,
-                    Role = role
-                };
-                await _user.CreateAsync(user);
-                return RedirectToAction("Login");
+                    var user = new User()
+                    {
+                        FullName = fullName,
+                        Email = email,
+                        PassWord = pass,
+                        Address = address,
+                        Phone = phone,
+                        Role = role
+                    };
+                    await _user.CreateAsync(user);
+                    return RedirectToAction("Login");
+                }    
+                else
+                {
+                    ViewBag.error2 = "Số điện thoại này đã được đăng kí!";
+                }    
             }
             else
             {
-                ViewBag.error = "Email này đã tồn tại!";
+                ViewBag.error1 = "Email này đã tồn tại!";
             }
             return View();
         }

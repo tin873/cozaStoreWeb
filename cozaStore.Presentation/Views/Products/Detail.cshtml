@@ -17,25 +17,44 @@
             <div class="col-md-6 col-lg-7 p-b-30">
                 <div class="p-l-25 p-r-30 p-lr-0-lg">
                     <div class="wrap-slick3 flex-sb flex-w">
-                        <div class="wrap-slick3-dots"></div>
-                        <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-                        <div class="slick3 gallery-lb">
-                            @foreach (var item in listImage)
-                            {
-                                var x = item.Image;
-                                <div class="item-slick3" data-thumb="/wwwroot/images/@item.Image">
+
+
+                        @if (listImage.Count() > 0)
+                        {
+                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+                            <div class="slick3 gallery-lb">
+                                @foreach (var item in listImage)
+                                {
+
+                                    <div class="item-slick3" data-thumb="/wwwroot/images/@item.Image">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="~/wwwroot/images/@item.Image" alt="IMG-PRODUCT">
+
+                                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="~/wwwroot/images/@item.Image">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="slick3 gallery-lb">
+                                <div class="item-slick3">
                                     <div class="wrap-pic-w pos-relative">
-                                        <img src="~/wwwroot/images/@item.Image" alt="IMG-PRODUCT">
+                                        <img src="~/wwwroot/images/@Model.Image" alt="IMG-PRODUCT">
 
-                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="~/wwwroot/images/@item.Image">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
+
                                     </div>
                                 </div>
-                            }
+                            </div>
+                        }
 
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -60,7 +79,7 @@
                             <input id="productid" style="display: none" value="@Model.ProductID" />
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select id="selectSize" class="js-select2" name="size">
+                                    <select id="selectSize" class="js-select2" name="size" onselect="func()">
                                         @foreach (var item in listSize)
                                         {
                                             <option>@item.Size</option>
@@ -105,9 +124,16 @@
                                 <div id="error" class="ajaxcar">
 
                                 </div>
-                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  addtocart" type="submit">
-                                    Thêm vào giỏ
-                                </button>
+                                @if (Model.ProductDetails.Count() > 0)
+                                {
+                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  addtocart" type="submit">
+                                        Thêm vào giỏ
+                                    </button>
+                                }
+                                else
+                                {
+                                    <p style="color: red; font-size: 14px;">Sản phẩm này hiện chưa nhập về!</p>
+                                }
                             </div>
                         </div>
                     </div>
@@ -306,7 +332,7 @@
                 var qty = $("input.qty").val();
                 var url = "/ShoppingCart/GetIdProductDetail";
                 var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-                
+
                 $.get(url, { id: @Model.ProductID +" " + color1 + " " + size1 + " " + qty }, function (data) {
                  if (data.indexOf('^') > 0)
                  {
@@ -315,11 +341,17 @@
                      swal(nameProduct, "đã thêm vào giỏ hàng !", "success")
                 }
                 else
-                    {
-                     document.getElementById("error").style.display = "block";
-                     $(".ajaxcar").html(data);
+                 {
+                     if (data.indexOf('!') > 0) {
+                         document.getElementById("error").style.display = "block";
+                         $(".ajaxcar").html(data);
+                     }
+                     else {
+                         document.getElementById("error").style.display = "block";
+                         $(".ajaxcar").html(data);
+                     }
                 }
-                    
+
                 })
                     //.then((value) => {
                     //    location.reload();

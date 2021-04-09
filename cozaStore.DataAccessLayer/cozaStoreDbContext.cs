@@ -8,6 +8,11 @@ namespace cozaStore.DataAccessLayer
     {
         public cozaStoreDbContext() : base("name=cozaStoreDb") { }
 
+        public static cozaStoreDbContext Create()
+        {
+            return new cozaStoreDbContext();
+        }
+
         public virtual DbSet<Category> Categories { get; set; }
 
         public virtual DbSet<Comment> Comments { get; set; }

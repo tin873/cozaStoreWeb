@@ -14,10 +14,7 @@
 
         protected override void Seed(cozaStore.DataAccessLayer.cozaStoreDbContext context)
         {
-            if (context.Categories.Any())
-            {
-                return;
-            }
+          
 
             #region Add Category
             var categories = new List<Category>()

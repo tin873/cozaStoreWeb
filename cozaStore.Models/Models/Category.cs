@@ -17,7 +17,7 @@ namespace cozaStore.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryID { get; set; }
 
-        [DisplayName("Tên nhà cung cấp")]
+        [DisplayName("Tên danh mục")]
         [Required(ErrorMessage = "Tên nhà cung cấp không được để trống")]
         [StringLength(50, ErrorMessage ="Tên danh mục phải có ít nhất 5 kí tự và nhiều nhất 30 kí tự", MinimumLength =5)]
         public string CategoryName { get; set; }

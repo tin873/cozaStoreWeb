@@ -30,22 +30,22 @@
                 </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="@Url.Action("Edit", "Users", new { id = Session["IDAdmin"]})">Sửa thông tin cá nhân</a>
+                        <a class="nav-link" href="@Url.Action("EditProfile", "AdminHome")">Sửa thông tin cá nhân</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index", "Users")">Quản lý người dùng</a>
                     </li>
                     <li>
                         <a class="nav-link" href="@Url.Action("Index", "Categories")">Quản lý danh mục</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="@Url.Action("Index", "Suppliers")">Quản lý nhà cung cấp</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="@Url.Action("Index", "Products")">Quản lý sản phẩm</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Coupons")">Quản lý mã giảm giá</a>
                     </li>
                     <li>
                         <a class="nav-link" href="@Url.Action("Index", "Contacts")">Danh sách liên hệ</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="@Url.Action("Index", "Orders")">Quản lý đơn hàng</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Suppliers")">Quản lý nhà cung cấp</a>
                     </li>
                 </ul>
             </div>

@@ -44,10 +44,13 @@ namespace cozaStore.Models
             get
             {
                 int sum = 0;
-                foreach (var item in ProductDetails)
+                if(ProductDetails != null)
                 {
-                    sum += item.Quantity;
-                }
+                    foreach (var item in ProductDetails)
+                    {
+                        sum += item.Quantity;
+                    }
+                }    
                 return sum;
             } 
         }

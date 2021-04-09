@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -149,6 +149,13 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CouponsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SuppliersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderHistoryController.cs" />
@@ -327,6 +334,7 @@
     <Content Include="wwwroot\images\item-cart-04.jpg" />
     <Content Include="wwwroot\images\item-cart-05.jpg" />
     <Content Include="wwwroot\images\noimage.png" />
+    <Content Include="wwwroot\images\noImgae.png" />
     <Content Include="wwwroot\images\product-04.jpg" />
     <Content Include="wwwroot\images\quanbonu1.jpg" />
     <Content Include="wwwroot\images\quanbonu2.jpg" />
@@ -862,6 +870,30 @@
     <Content Include="Areas\Admin\assets\sass\lbd\_variables.scss" />
     <Content Include="Areas\Admin\assets\sass\light-bootstrap-dashboard.scss" />
     <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\EditProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Suppliers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Suppliers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Suppliers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Suppliers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductsManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductsManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductsManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductsManager\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductDetails\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1029,6 +1061,7 @@
     <Content Include="Views\OrderHistory\OrderHistoryDetail.cshtml" />
     <Content Include="Views\Shared\_OrderHistoryOverView.cshtml" />
     <Content Include="Views\OrderHistory\_ErrorOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\_ErrorOrderNull.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

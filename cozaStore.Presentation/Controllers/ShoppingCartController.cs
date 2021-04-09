@@ -44,8 +44,20 @@ namespace cozaStore.Presentation.Controllers
             int qty = int.Parse(arr[3]);
             Product product = await _product.GetByIdAsync(productId);
             ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper()) && x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
-            int id1 = productDetail.ProductDetailId;
-            return RedirectToAction("AddToCart", new { id = id1 + " " + qty });
+            if(productDetail != null)
+            {
+                int id1 = productDetail.ProductDetailId;
+                return RedirectToAction("AddToCart", new { id = id1 + " " + qty });
+            }    
+            else
+            {
+                return RedirectToAction("_ErrorOrderNull");
+            }    
+        }
+        public PartialViewResult _ErrorOrderNull()
+        {
+            ViewBag.message = "Sản phẩm không tồn tại hoặc đã hết hàng!";
+            return PartialView();
         }
         public PartialViewResult _ErrorOrder(string idQty)
         {

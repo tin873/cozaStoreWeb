@@ -148,5 +148,23 @@ namespace cozaStore.Presentation.Controllers
                 return RedirectToAction("Detail", new { id = id });
         }
         
+        public PartialViewResult _Color(string id)
+        {
+            var arr = id.Split();
+            int productId = int.Parse(arr[0]);
+            string size = arr[1]; 
+            var productDetails = _productDetail.FindAll(filter: x => x.ProductDetailId == productId && x.Size == size);
+            List<ColorViewData> colors = new List<ColorViewData>();
+            foreach (var item in productDetails)
+            {
+                var coloritem = item.Color;
+                var color = new ColorViewData()
+                {
+                    Color = coloritem
+                };
+                colors.Add(color);
+            }
+            return PartialView(colors);
+        }    
     }
 }

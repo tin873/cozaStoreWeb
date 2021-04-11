@@ -1,8 +1,7 @@
 namespace cozaStore.DataAccessLayer.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class CozaStoreV7 : DbMigration
     {
         public override void Up()

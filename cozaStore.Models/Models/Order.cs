@@ -23,7 +23,8 @@ namespace cozaStore.Models
         [DisplayName("Ngày gửi")]
         public DateTime ShippedDate { get; set; }
 
-
+        [DisplayName("Ngày nhận")]
+        public DateTime? EndDate { get; set; }
 
         [DisplayName("Họ tên")]
         [Required(ErrorMessage = "Họ tên không được để trống")]

@@ -17,7 +17,7 @@ namespace cozaStore.DataAccessLayer.Migrations
                     })
                 .PrimaryKey(t => t.CouponCode);
             
-            AddColumn("dbo.Order", "EndDate", c => c.DateTime(nullable: false));
+            AddColumn("dbo.Order", "EndDate", c => c.DateTime(nullable: true));
             AddColumn("dbo.Order", "Description", c => c.String(maxLength: 500));
             AddColumn("dbo.Order", "CouponCode", c => c.String(nullable: false, maxLength: 20));
             CreateIndex("dbo.Order", "CouponCode");

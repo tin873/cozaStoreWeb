@@ -13,7 +13,7 @@ namespace cozaStore.DataAccessLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202104081725021_cozaStoreV8"; }
+            get { return "202104110354147_cozaStoreV8"; }
         }
         
         string IMigrationMetadata.Source

@@ -284,15 +284,7 @@
     <script src="~/wwwroot/vendor/bootstrap/js/popper.js"></script>
     <script src="~/wwwroot/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="~/wwwroot/vendor/select2/select2.min.js"></script>
-    <script>
-        $(".js-select2").each(function () {
-            $(this).select2({
-                minimumResultsForSearch: 20,
-                dropdownParent: $(this).next('.dropDownSelect2')
-            });
-        })
-    </script>
+
     <!--===============================================================================================-->
     <script src="~/wwwroot/vendor/daterangepicker/moment.min.js"></script>
     <script src="~/wwwroot/vendor/daterangepicker/daterangepicker.js"></script>
@@ -350,12 +342,12 @@
 
         /*---------------------------------------------*/
 
-         $('.js-addcart-detail').each(function () {
-              var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-              $(this).on('click', function () {
-                  swal(nameProduct, "đã thêm vào giỏ hàng !", "success");
-              });
-          });
+         //$('.js-addcart-detail').each(function () {
+         //     var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+         //     $(this).on('click', function () {
+         //         swal(nameProduct, "đã thêm vào giỏ hàng !", "success");
+         //     });
+         // });
           
 
         /*.............................................*/

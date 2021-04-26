@@ -112,7 +112,35 @@ namespace cozaStore.Presentation.Controllers
             var categories =  _category.GetAll();
             return PartialView(categories);
         }
+        public PartialViewResult _SelectSize(string id)
+        {
+            var arr = id.Split(' ');
+            int productId = int.Parse(arr[0]);
+            if(arr.Length < 2)
+            {
+                return PartialView();
+            }    
+            else
+            {
+                string color = arr[1];
+                var product = _product.GetById(productId);
+                var productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Equals(color.ToUpper()));
+                //get size
+                List<SizeViewData> sizes = new List<SizeViewData>();
 
+                var size = from s in productDetail
+                           group s by new { s.Size } into g
+                           select new { g.Key.Size };
+                foreach (var item in size)
+                {
+                    var aritem = item.ToString().Split(' ');
+                    var s = new SizeViewData() { Size = aritem[3] };
+                    sizes.Add(s);
+                }
+                return PartialView(sizes);
+            }    
+            
+        }
         public PartialViewResult _RealeaseProduct(int id)
         {
             var products =  _product.FindAll(filter: x => x.Category.CategoryID == id);

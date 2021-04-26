@@ -43,7 +43,7 @@ namespace cozaStore.Presentation.Controllers
             string size = arr[2];
             int qty = int.Parse(arr[3]);
             Product product = await _product.GetByIdAsync(productId);
-            ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Contains(color.ToUpper()) && x.Size.ToUpper().Contains(size.ToUpper())).FirstOrDefault();
+            ProductDetail productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Equals(color.ToUpper()) && x.Size.ToUpper().Equals(size.ToUpper())).FirstOrDefault();
             if(productDetail != null)
             {
                 int id1 = productDetail.ProductDetailId;

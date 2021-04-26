@@ -72,23 +72,7 @@
 
                     <!--  -->
                     <div class="p-t-33">
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">
-                                Kích cỡ
-                            </div>
-                            <input id="productid" style="display: none" value="@Model.ProductID" />
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select id="selectSize" class="js-select2" name="size" onselect="func()">
-                                        @foreach (var item in listSize)
-                                        {
-                                            <option>@item.Size</option>
-                                        }
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
@@ -97,7 +81,8 @@
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select id="selectColor" class="js-select2" name="color" onselect="mySelector()">
+                                    <select id="selectColor" class="js-select2" name="color" onchange="mySelector()">
+                                        <option>chọn mầu sắc</option>
                                         @foreach (var item in listColor)
                                         {
                                             <option>@item.Color</option>
@@ -108,6 +93,19 @@
                             </div>
                         </div>
 
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m respon6">
+                                Kích cỡ
+                            </div>
+
+                            <div class="size-204 respon6-next">
+                                <div class="rs1-select2 bor8 bg0 loadsize">
+                                    @{ Html.RenderAction("_SelectSize", "Products");}
+
+                                </div>
+                            </div>
+                        </div>
+                        <input id="productid" style="display: none" value="@Model.ProductID" />
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-204 flex-w flex-m respon6-next">
                                 <div class="wrap-num-product flex-w m-r-20 m-tb-10">
@@ -329,7 +327,11 @@
                 e.preventDefault();
                 var color1 = $("#selectColor option:selected").text();
                 var size1 = $("#selectSize option:selected").text();
-                var qty = $("input.qty").val();
+                if (color1 == "chọn mầu sắc" || size1 == "chọn size") {
+                    alert("Bạn cần phải chọn mầu và size!");
+                }
+                else {
+                    var qty = $("input.qty").val();
                 var url = "/ShoppingCart/GetIdProductDetail";
                 var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 
@@ -353,10 +355,29 @@
                 }
 
                 })
+                }
+
                     //.then((value) => {
                     //    location.reload();
                     //});
             });
         });
+        function mySelector() {
+            var color1 = $("#selectColor option:selected").text();
+            var url = "/Products/_SelectSize";
+            console.log("hleeo");
+            $.get(url, { id: @Model.ProductID +" " + color1 }, function (data) {
+                $(".loadsize").html(data);
+            });
+        };
+    </script>
+    <script src="~/wwwroot/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
     </script>
 }

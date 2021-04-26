@@ -1062,6 +1062,7 @@
     <Content Include="Views\Shared\_OrderHistoryOverView.cshtml" />
     <Content Include="Views\OrderHistory\_ErrorOrder.cshtml" />
     <Content Include="Views\ShoppingCart\_ErrorOrderNull.cshtml" />
+    <Content Include="Views\Products\_SelectSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

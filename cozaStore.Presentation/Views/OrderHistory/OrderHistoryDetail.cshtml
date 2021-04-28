@@ -42,7 +42,8 @@
                     <h4 style="padding-bottom: 10px;">Địa Chỉ Nhận Hàng</h4>
                     <p style="padding-bottom: 10px;"><strong>@Model.FullName</strong></p>
                     <p style="padding-bottom: 10px;">@Model.Phone</p>
-                    <p>@Model.Address</p>
+                    <p style="padding-bottom: 10px;">@Model.Address</p>
+                    <p>Ngày đặt: @Model.CreateDate.ToString()</p>
                 </div>
             </div>
             <div style="border-top: 1px solid #e6e6e6;"></div>
@@ -60,7 +61,7 @@
                             </div>
                             <div class="col-3" style="padding-top: 90px;">
                                 <p style="color: red; padding-left: 170px;">
-                                    @((item.Quantity*item.ProductDetail.Price).ToString("#,###"))đ
+                                    @((item.Quantity*item.ProductDetail.Product.Price).ToString("#,###"))đ
                                 </p>
                             </div>
                         </div>

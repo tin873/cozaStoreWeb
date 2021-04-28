@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.Status.ToString().Equals("waitForConfirm"))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    Chờ xác nhận
+                </td>
+                <td>
+                    <a type="button" class="btn btn-info" style="font-size: 12px;" href="@Url.Action("OrderDetail", "Orders" ,new { orderId = item.OrderID})">Chi tiết</a> |
+                    <a type="button" class="btn btn-success submit" data-id="@item.OrderID" style="font-size: 12px;">Duyệt đơn</a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+
+                    @if (item.Status.ToString().Equals("shipping"))
+                    {
+                        <span style="padding: 20px;">Đang giao hàng</span>
+                    }
+                    @if (item.Status.ToString().Equals("delivered"))
+                    {
+                        <span style="padding: 20px;">Đã nhận</span>
+                    }
+                    @if (item.Status.ToString().Equals("cancelled"))
+                    {
+                        <span style="padding: 20px;">Đã hủy</span>
+                    }
+                </td>
+                <td>
+                    <a type="button" class="btn btn-info" style="font-size: 12px;" href="@Url.Action("OrderDetail", "Orders" ,new { orderId = item.OrderID})">Chi tiết</a>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+<script src="~/wwwroot/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        $(".submit").click(function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var orderId = $(this).data("id");
+            
+            var url = "/Orders/SubmitOrder";
+            $.get(url, { orderId: orderId }, function (data) {
+                location.reload();
+            });
+        });
+    });
+</script>

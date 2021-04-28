@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using cozaStore.DataAccessLayer;
+﻿using cozaStore.BusinessLogicLayer;
 using cozaStore.Models;
-using cozaStore.BusinessLogicLayer;
+using System;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace cozaStore.Presentation.Areas.Admin.Controllers
 {
@@ -49,7 +43,7 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProductDetailId,ProductName,Image,Price,Size,Color,Quantity,ProductID")] ProductDetail productDetail)
+        public async Task<ActionResult> Create([Bind(Include = "ProductName,Image,Price,Size,Color,Quantity,ProductID")] ProductDetail productDetail)
         {
             try
             {
@@ -93,7 +87,7 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProductDetailId,ProductName,Image,Price,Size,Color,Quantity,ProductID")] ProductDetail productDetail)
+        public async Task<ActionResult> Edit([Bind(Include = "ProductDetailId,ProductName,Image,Size,Color,Quantity,ProductID")] ProductDetail productDetail)
         {
             
                 var f = Request.Files["ImageFile"];

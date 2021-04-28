@@ -1,0 +1,105 @@
+﻿@model Order
+@{
+    ViewBag.Title = "OrderDetail";
+}
+
+<div style="padding: 20px 20px 20px 0px;">
+    <a type="button" class="btn btn-info" style="font-size: 18px;" href="@Url.Action("Index", "Orders")"><< Quay lại</a>
+</div>
+<div style="color:black;">
+    <h2>Chi tiết đơn hàng</h2>
+    <p><strong>Họ Tên:</strong>&nbsp;&nbsp;@Model.FullName</p>
+    <p><strong>Số Điện Thoại:</strong>&nbsp;&nbsp;@Model.Phone</p>
+    <p><strong>Đại Chỉ:</strong>&nbsp;&nbsp;@Model.Address</p>
+    <p><strong>Ngày Đặt:</strong>&nbsp;&nbsp;@Model.CreateDate</p>
+    <p><strong>Tổng Tiền:</strong>&nbsp;&nbsp;<span style="color:red">@Model.SumTotal.ToString("0,0 đ")</span></p>
+    <p>
+        <strong>Trạng Thái:</strong>&nbsp;&nbsp;
+        @if (Model.Status == Status.waitForConfirm)
+        {
+            <span style="color: green">
+                Chờ xác nhận
+            </span>
+        }
+        @if (Model.Status == Status.shipping)
+        {
+            <span style="color: #FF9900">
+                Đang giao
+            </span>
+        }
+        @if (Model.Status == Status.cancelled)
+        {
+            <span style="color: red">
+                Đã hủy
+            </span>
+        }
+        @if (Model.Status == Status.delivered)
+        {
+            <span>
+                Đã nhận
+            </span>
+        }
+    </p>
+</div>
+<table class="table" style="color:black">
+    <tr>
+
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            Màu sắc
+        </th>
+        <th>
+            Kích cỡ
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Tổng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderDetails)
+    {
+        decimal total = (decimal)item.ProductDetail.Product.Price * item.Quantity;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDetail.ProductName)
+            </td>
+            <td>
+                @{
+                    string ImagePath = "~/wwwroot/images/" + item.ProductDetail.Image;
+                }
+                <img width="100" src="@Url.Content(ImagePath)" alt="Product" class="img-thumbnail" />
+                <br />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDetail.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDetail.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDetail.Product.Price)
+            </td>
+            <td>
+                @total.ToString("0,0 đ")
+            </td>
+        </tr>
+        total = 0;
+    }
+
+</table>
+

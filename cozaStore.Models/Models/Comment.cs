@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,6 +28,7 @@ namespace cozaStore.Models
         [StringLength(500, ErrorMessage = "The comment must be between 5 and 500 characters", MinimumLength = 5)]
         public string Content { get; set; }
 
+        public DateTime CommentDate { get; set; }
         public int ProductID { get; set; }
 
         public virtual Product Product { get; set; }

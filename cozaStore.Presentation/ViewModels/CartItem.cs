@@ -14,7 +14,7 @@ namespace cozaStore.Presentation
             } 
         }
 
-        public decimal Total { get { return ProductDetail.Price * Quantity; } }
+        public decimal Total { get { return ProductDetail.Product.Price * Quantity; } }
 
         
     }

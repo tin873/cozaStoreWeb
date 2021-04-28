@@ -27,9 +27,6 @@ namespace cozaStore.Models
         [StringLength(100)]
         public string Image { get; set; }
 
-        [DisplayName("Giá")]
-        [DisplayFormat(DataFormatString = "{0:0,0} vnđ")]
-        public decimal Price { get; set; }
 
         [DisplayName("Kích cỡ")]
         [StringLength(15)]

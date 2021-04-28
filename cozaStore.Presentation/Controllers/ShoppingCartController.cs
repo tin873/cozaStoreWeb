@@ -184,7 +184,7 @@ namespace cozaStore.Presentation.Controllers
             if (productDetail.Quantity > item.Quantity+1)
             {
                 item.Quantity++;
-                var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
+                var result = new { qty = item.Quantity, price = item.ProductDetail.Product.Price };
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -193,7 +193,7 @@ namespace cozaStore.Presentation.Controllers
                 if(productDetail.Quantity == item.Quantity + 1)
                 {
                     item.Quantity++;
-                    var result = new { qty = item.Quantity, price = item.ProductDetail.Price, qtyReal = productDetail.Quantity };
+                    var result = new { qty = item.Quantity, price = item.ProductDetail.Product.Price, qtyReal = productDetail.Quantity };
 
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }    
@@ -226,7 +226,7 @@ namespace cozaStore.Presentation.Controllers
                 cart.Remove(item);
             }
 
-            var result = new { qty = item.Quantity, price = item.ProductDetail.Price };
+            var result = new { qty = item.Quantity, price = item.ProductDetail.Product.Price };
 
             return Json(result, JsonRequestBehavior.AllowGet);
 

@@ -170,7 +170,8 @@ namespace cozaStore.Presentation.Controllers
                 Email = email,
                 NameUser = name,
                 Content = content,
-                Product = product
+                Product = product,
+                CommentDate = DateTime.Now
             };
                 _comment.Create(comment);
                 return RedirectToAction("Detail", new { id = id });

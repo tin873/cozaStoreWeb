@@ -15,6 +15,16 @@ namespace cozaStore.Presentation.Controllers
         private readonly ICouponServices _coupon;
         private readonly ICheckOutServices _checkOut;
         private readonly IUserServieces _user;
+
+        /// <summary>
+        /// contructor CheckOutController
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="order"></param>
+        /// <param name="orderDetail"></param>
+        /// <param name="coupon"></param>
+        /// <param name="checkOut"></param>
+        /// <param name="user"></param>
         public CheckOutController(IProductDetailServices product, IOrderServices order, IOrderDetailServices orderDetail, ICouponServices coupon, ICheckOutServices checkOut, IUserServieces user)
         {
             _productDetail = product;
@@ -24,16 +34,26 @@ namespace cozaStore.Presentation.Controllers
             _checkOut = checkOut;
             _user = user;
         }
+
+        /// <summary>
+        /// Display list item of the cart
+        /// </summary>
+        /// <param name="couponCode"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index(string couponCode)
         {
+            //check and create couponcode
             if (couponCode != null)
             {
                 Session[Constant.Code] = couponCode;
             }
+            //check out cart have item
             if (Session[Constant.Code] != null)
             {
+                //select Coupon Code with couponCode
                 var coupon = _coupon.GetById(Session[Constant.Code]);
+                //check coupon code Exist
                 if (coupon != null)
                 {
                     var cart = Session[Constant.Cart];
@@ -86,6 +106,12 @@ namespace cozaStore.Presentation.Controllers
                 return View(list);
             }
         }
+
+        /// <summary>
+        /// get item in cart to check out
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(FormCollection data)
         {
@@ -129,6 +155,10 @@ namespace cozaStore.Presentation.Controllers
             return RedirectToAction("CheckOutIsOk");
         }
 
+        /// <summary>
+        /// Display if check out success
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CheckOutIsOk()
         {
             return View();

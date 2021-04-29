@@ -1,0 +1,59 @@
+﻿@model IEnumerable<cozaStoreWeb.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách đơn hàng </h2>
+
+<p><a href="@Url.Action("Index","Orders")" style=" padding: 10px; font-size: 20px;">Quay lại</a></p>
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Mầu sắc
+        </th>
+        <th>
+            Kích thước
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @{
+                    var ImagePath = "~/wwwroot/images/" + item.Product.Image;
+                }
+                <img width="150" class="img-thumbnail" src="@Url.Content(ImagePath)" alt="ảnh" style=" height: 120px; width: 100px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+
+        </tr>
+    }
+    
+
+</table>
+
+
+  

@@ -1,13 +1,10 @@
 ﻿using cozaStore.BusinessLogicLayer;
+using cozaStore.Common;
 using cozaStore.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Transactions;
-using cozaStore.Common;
 
 namespace cozaStore.Presentation.Controllers
 {
@@ -67,6 +64,7 @@ namespace cozaStore.Presentation.Controllers
             int dem = 0;
             Order orders = await _order.GetByIdAsync(id);
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem> ?? new List<CartItem>();
+            //get list item in old order
             foreach (var orderDetail in orders.OrderDetails)
             {
                 ProductDetail product = await _productDetail.GetByIdAsync(orderDetail.ProductDetail.ProductDetailId);
@@ -75,6 +73,7 @@ namespace cozaStore.Presentation.Controllers
                     dem++;
                 }    
             }
+            //check quantity product and add to card
             if(dem == orders.OrderDetails.Count())
             {
                 foreach (var orderDetail in orders.OrderDetails)
@@ -102,6 +101,8 @@ namespace cozaStore.Presentation.Controllers
         {
             return PartialView();
         }
+
+
         /// <summary>
         /// all methods have display partial view of order history
         /// </summary>

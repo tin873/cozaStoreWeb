@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using cozaStore.DataAccessLayer;
+﻿using cozaStore.BusinessLogicLayer;
 using cozaStore.Models;
-using cozaStore.BusinessLogicLayer;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace cozaStore.Presentation.Areas.Admin.Controllers
 {

@@ -1,6 +1,7 @@
 ﻿using cozaStore.BusinessLogicLayer;
 using cozaStore.Common;
 using cozaStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +13,25 @@ namespace cozaStore.Presentation.Controllers
     {
         private readonly IProductServices _product;
         private readonly IProductDetailServices _productDetail;
-        public ShoppingCartController(IProductServices product, IProductDetailServices productDetail)
+        private readonly IPromotion _promotion;
+
+        /// <summary>
+        /// Contructor
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="productDetail"></param>
+        /// <param name="promotion"></param>
+        public ShoppingCartController(IProductServices product, IProductDetailServices productDetail, IPromotion promotion)
         {
+            _promotion = promotion;
             _product = product;
             _productDetail = productDetail;
         }
         // GET: ShoppingCart
+        /// <summary>
+        /// display list item of cart
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             var cart = Session[Constant.Cart];
@@ -35,6 +49,11 @@ namespace cozaStore.Presentation.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// check productDetail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> GetIdProductDetail(string id)
         {
             var arr = id.Split(' ');
@@ -54,6 +73,11 @@ namespace cozaStore.Presentation.Controllers
                 return RedirectToAction("_ErrorOrderNull");
             }    
         }
+
+        /// <summary>
+        /// display error
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult _ErrorOrderNull()
         {
             ViewBag.message = "Sản phẩm không tồn tại hoặc đã hết hàng!";
@@ -101,6 +125,12 @@ namespace cozaStore.Presentation.Controllers
             }
             return PartialView();
         }
+
+        /// <summary>
+        /// Add productDetail in Cart
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> AddToCart(string id)
         {
             var arr = id.Split(' ');
@@ -111,6 +141,11 @@ namespace cozaStore.Presentation.Controllers
             CartItem model = new CartItem();
 
             ProductDetail product = await _productDetail.GetByIdAsync(id1);
+
+            if( product.Product.Promotion != null && product.Product.Promotion.EndDate <= DateTime.Now)
+            {
+                _promotion.Delete(product.Product.Promotion.PromotionId);
+            }    
 
             var itemInCart = cart.FirstOrDefault(x => x.ProductDetail.ProductDetailId == id1);
 
@@ -151,6 +186,11 @@ namespace cozaStore.Presentation.Controllers
 
             return RedirectToAction("CartPartial");
         }
+
+        /// <summary>
+        /// display list item in cart Partial
+        /// </summary>
+        /// <returns></returns>
         public ActionResult CartPartial()
         {
             CartItem model = new CartItem();
@@ -173,6 +213,11 @@ namespace cozaStore.Presentation.Controllers
             return PartialView(model);
         }
 
+        /// <summary>
+        /// increase quantity product in cart
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public JsonResult IncrementProduct(int productId)
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
@@ -184,7 +229,7 @@ namespace cozaStore.Presentation.Controllers
             if (productDetail.Quantity > item.Quantity+1)
             {
                 item.Quantity++;
-                var result = new { qty = item.Quantity, price = item.ProductDetail.Product.Price };
+                var result = new { qty = item.Quantity, price = item.ProductDetail.Product.PricePromotion };
 
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -204,12 +249,24 @@ namespace cozaStore.Presentation.Controllers
                 }    
             }
         }
+
+        /// <summary>
+        /// display error if item have quantity > quantity of product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public PartialViewResult _ErrorQuantity(int id)
         {
             ProductDetail productDetail = _productDetail.GetById(id);
             ViewBag.errorQtity = "Hiện chỉ còn " + productDetail.Quantity + " sản phẩm!";
             return PartialView();
         }
+
+        /// <summary>
+        /// Decrement quantity of item in cart
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public ActionResult DecrementProduct(int productId)
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
@@ -226,11 +283,16 @@ namespace cozaStore.Presentation.Controllers
                 cart.Remove(item);
             }
 
-            var result = new { qty = item.Quantity, price = item.ProductDetail.Product.Price };
+            var result = new { qty = item.Quantity, price = item.ProductDetail.Product.PricePromotion };
 
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+
+        /// <summary>
+        /// delete item in cart
+        /// </summary>
+        /// <param name="productId"></param>
         public void RemoveProduct(int productId)
         {
             List<CartItem> cart = Session[Constant.Cart] as List<CartItem>;
@@ -240,6 +302,11 @@ namespace cozaStore.Presentation.Controllers
             cart.Remove(item);
 
         }
+
+        /// <summary>
+        /// Display item in cart mini
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult CartMini()
         {
             var cart = Session[Constant.Cart];

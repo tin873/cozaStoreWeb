@@ -1,0 +1,10 @@
+﻿@model IEnumerable<cozaStoreWeb.Models.Color>
+<div class="rs1-select2 bor8 bg0">
+    <select class="js-select2" name="color">
+        @foreach (var item in Model)
+        {
+             <option><p>@Html.DisplayFor(itemmodel => item.ColorName)</p></option>
+        }
+    </select>
+    <div class="dropDownSelect2"></div>
+</div>

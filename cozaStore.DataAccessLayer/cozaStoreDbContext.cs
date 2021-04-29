@@ -35,6 +35,8 @@ namespace cozaStore.DataAccessLayer
 
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<Promotion> Promotions { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //setdatetime
@@ -125,6 +127,11 @@ namespace cozaStore.DataAccessLayer
                 .HasMany(e => e.ProductDetails)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(true);
+
+            //Prouduct with Promotion 1 to 1
+            modelBuilder.Entity<Product>()
+               .HasOptional(s => s.Promotion) 
+               .WithRequired(ad => ad.Product);
         }
     }
 }

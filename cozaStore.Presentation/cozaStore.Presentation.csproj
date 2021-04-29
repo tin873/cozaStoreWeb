@@ -155,6 +155,7 @@
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductDetailsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SuppliersController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
@@ -897,6 +898,9 @@
     <Content Include="Areas\Admin\Views\ProductDetails\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\OrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionsManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionsManager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionsManager\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

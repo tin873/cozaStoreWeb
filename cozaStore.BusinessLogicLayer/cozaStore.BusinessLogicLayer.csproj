@@ -60,6 +60,7 @@
     <Compile Include="IServices\IOrderServices.cs" />
     <Compile Include="IServices\IProductDetailServices.cs" />
     <Compile Include="IServices\IProductServices.cs" />
+    <Compile Include="IServices\IPromotion.cs" />
     <Compile Include="IServices\IRoleServices.cs" />
     <Compile Include="IServices\ISupplierServices.cs" />
     <Compile Include="IServices\IUserServieces.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Services\OrderServices.cs" />
     <Compile Include="Services\ProductDetailServices.cs" />
     <Compile Include="Services\ProductServices.cs" />
+    <Compile Include="Services\PromotionServices.cs" />
     <Compile Include="Services\RoleServices.cs" />
     <Compile Include="Services\SupplierServices.cs" />
     <Compile Include="Services\UserServices.cs" />

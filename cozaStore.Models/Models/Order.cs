@@ -52,7 +52,7 @@ namespace cozaStore.Models
                 decimal sumTotal = 0m;
                 foreach (var item in OrderDetails)
                 {
-                    sumTotal = item.ProductDetail.Product.Price * item.Quantity;
+                    sumTotal += item.ProductDetail.Product.PricePromotion * item.Quantity;
                 }
                 if (Coupon != null)
                 {

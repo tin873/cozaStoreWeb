@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Areas/Admin/assets/css/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form action="/Admin/AdminID/Login" class="login-form" method="post">
+                <input name="tk" type="text" placeholder="tên đăng nhập" />
+                <input name="mk" type="password" placeholder="mật khẩu" />
+                @if (ViewBag.Error != null)
+                {
+                    <br />
+                    <div class="alert alert-danger" style="color:red" role="alert">@ViewBag.Error</div>
+                }
+                <button>Đăng nhập</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $('.message a').click(function () {
+        $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    });
+</script>

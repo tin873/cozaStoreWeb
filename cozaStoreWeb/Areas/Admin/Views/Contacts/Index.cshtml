@@ -1,0 +1,30 @@
+﻿@model IEnumerable<cozaStoreWeb.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách người liên hệ</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+    </tr>
+}
+
+</table>

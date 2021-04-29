@@ -65,9 +65,23 @@
                         @Model.ProductName
                     </h4>
 
-                    <span class="mtext-106 cl2">
-                        @Model.Price.ToString("#,###")đ
-                    </span>
+                    @if (Model.Promotion != null && Model.Promotion.EndDate > DateTime.Now)
+                    {
+                        <span class="mtext-106 cl2" style="color: red;">
+                            @Model.PricePromotion.ToString("#,###") đ
+                        </span>
+                        <div>
+                            <Strike class="mtext-106 cl2">
+                                @Model.Price.ToString("#,###") đ
+                            </Strike>
+                        </div>
+                    }
+                    else
+                    {
+                        <span class="mtext-106 cl2" style="color: red;">
+                            @Model.Price.ToString("#,###") đ
+                        </span>
+                    }
 
 
                     <!--  -->
@@ -365,7 +379,6 @@
         function mySelector() {
             var color1 = $("#selectColor option:selected").text();
             var url = "/Products/_SelectSize";
-            console.log("hleeo");
             $.get(url, { id: @Model.ProductID +" " + color1 }, function (data) {
                 $(".loadsize").html(data);
             });

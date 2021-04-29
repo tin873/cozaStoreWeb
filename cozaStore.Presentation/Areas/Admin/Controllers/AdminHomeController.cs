@@ -1,10 +1,6 @@
 ﻿using cozaStore.BusinessLogicLayer;
 using cozaStore.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cozaStore.Presentation.Areas.Admin.Controllers
@@ -30,12 +26,20 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Home", new { Area = "" });
             }
         }
+        /// <summary>
+        /// Logout user Admin 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session.Clear();
             return RedirectToAction("Login", "Home", new { area = "" });
         }
 
+        /// <summary>
+        /// display old information user Admin
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> EditProfile()
         {
@@ -44,6 +48,12 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
             ViewBag.RoleIds = new SelectList(roles, "RoleID", "RoleName");
             return View(user);
         }
+
+        /// <summary>
+        /// Edit with mehtod poss
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditProfile([Bind(Include = "UserID,FullName,Email,PassWord,Address,Phone,RoleID")] User user)

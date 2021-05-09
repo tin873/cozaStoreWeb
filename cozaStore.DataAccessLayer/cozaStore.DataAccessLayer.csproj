@@ -83,9 +83,17 @@
     <Compile Include="Migrations\202104020213395_CozaStoreV7.Designer.cs">
       <DependentUpon>202104020213395_CozaStoreV7.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104081725021_cozaStoreV8.cs" />
-    <Compile Include="Migrations\202104081725021_cozaStoreV8.Designer.cs">
-      <DependentUpon>202104081725021_cozaStoreV8.cs</DependentUpon>
+    <Compile Include="Migrations\202104110354147_cozaStoreV8.cs" />
+    <Compile Include="Migrations\202104110354147_cozaStoreV8.Designer.cs">
+      <DependentUpon>202104110354147_cozaStoreV8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104261243311_CozaStoreV9.cs" />
+    <Compile Include="Migrations\202104261243311_CozaStoreV9.Designer.cs">
+      <DependentUpon>202104261243311_CozaStoreV9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104281245307_CozaStoreV10.cs" />
+    <Compile Include="Migrations\202104281245307_CozaStoreV10.Designer.cs">
+      <DependentUpon>202104281245307_CozaStoreV10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,8 +132,14 @@
     <EmbeddedResource Include="Migrations\202104020213395_CozaStoreV7.resx">
       <DependentUpon>202104020213395_CozaStoreV7.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104081725021_cozaStoreV8.resx">
-      <DependentUpon>202104081725021_cozaStoreV8.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104110354147_cozaStoreV8.resx">
+      <DependentUpon>202104110354147_cozaStoreV8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104261243311_CozaStoreV9.resx">
+      <DependentUpon>202104261243311_CozaStoreV9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104281245307_CozaStoreV10.resx">
+      <DependentUpon>202104281245307_CozaStoreV10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

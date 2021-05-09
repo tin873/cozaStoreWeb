@@ -297,7 +297,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-M-B",
                     Image = "aococnam1b.jpg",
-                    Price = 250000,
                     Size = "M",
                     Color = "Xanh",
                     Quantity = 20
@@ -307,7 +306,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-L-B",
                     Image = "aococnam1b.jpg",
-                    Price = 250000,
                     Size = "L",
                     Color = "Xanh",
                     Quantity = 20
@@ -317,7 +315,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-XL-B",
                     Image = "aococnam1b.jpg",
-                    Price = 250000,
                     Size = "XL",
                     Color = "Xanh",
                     Quantity = 20
@@ -327,7 +324,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-XL-W",
                     Image = "aococnam1w.jpg",
-                    Price = 250000,
                     Size = "XL",
                     Color = "Trắng",
                     Quantity = 20
@@ -337,7 +333,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-L-W",
                     Image = "aococnam1w.jpg",
-                    Price = 250000,
                     Size = "L",
                     Color = "Trắng",
                     Quantity = 20
@@ -347,7 +342,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN3")),
                     ProductName = "Áo somi M2SMN3-M-W",
                     Image = "aococnam1w.jpg",
-                    Price = 250000,
                     Size = "M",
                     Color = "Trắng",
                     Quantity = 20
@@ -357,7 +351,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN5")),
                     ProductName = "Áo somi M2SMN5-M-B",
                     Image = "aococnam2.jpg",
-                    Price = 250000,
                     Size = "M",
                     Color = "Xanh",
                     Quantity = 20
@@ -367,7 +360,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN5")),
                     ProductName = "Áo somi M2SMN5-L-B",
                     Image = "aococnam2.jpg",
-                    Price = 250000,
                     Size = "L",
                     Color = "Xanh",
                     Quantity = 20
@@ -377,7 +369,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN5")),
                     ProductName = "Áo somi M2SMN5-XL-B",
                     Image = "aococnam2.jpg",
-                    Price = 250000,
                     Size = "XL",
                     Color = "Xanh",
                     Quantity = 20
@@ -387,7 +378,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Phông M2SPN2")),
                     ProductName = "Áo Phông M2SPN2-F-C",
                     Image = "aophongnam1.jpg",
-                    Price = 300000,
                     Size = "Free size",
                     Color = "Cam",
                     Quantity = 20
@@ -397,7 +387,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN9")),
                     ProductName = "Áo somi M2SMN9-M-B",
                     Image = "aosomiNam1.jpg",
-                    Price = 300000,
                     Size = "M",
                     Color = "Đen",
                     Quantity = 20
@@ -407,7 +396,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN9")),
                     ProductName = "Áo somi M2SMN9-L-B",
                     Image = "aosomiNam1.jpg",
-                    Price = 300000,
                     Size = "L",
                     Color = "Đen",
                     Quantity = 20
@@ -417,7 +405,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo somi M2SMN9")),
                     ProductName = "Áo somi M2SMN9-XL-B",
                     Image = "aosomiNam1.jpg",
-                    Price = 300000,
                     Size = "XL",
                     Color = "Đen",
                     Quantity = 20
@@ -427,7 +414,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần jean M2SMJ8")),
                     ProductName = "Quần jean M2SMJ8-29-B",
                     Image = "quanjeannam1.jpg",
-                    Price = 325000,
                     Size = "29",
                     Color = "Xanh",
                     Quantity = 20
@@ -437,7 +423,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần jean M2SMJ8")),
                     ProductName = "Quần jean M2SMJ8-30-B",
                     Image = "quanjeannam1.jpg",
-                    Price = 325000,
                     Size = "30",
                     Color = "Xanh",
                     Quantity = 20
@@ -447,7 +432,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần jean M2SMJ8")),
                     ProductName = "Quần jean M2SMJ8-31-B",
                     Image = "quanjeannam1.jpg",
-                    Price = 325000,
                     Size = "31",
                     Color = "Xanh",
                     Quantity = 20
@@ -457,7 +441,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần jean M2SMJ8")),
                     ProductName = "Quần jean M2SMJ8-32-B",
                     Image = "quanjeannam1.jpg",
-                    Price = 325000,
                     Size = "32",
                     Color = "Xanh",
                     Quantity = 20
@@ -467,7 +450,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-M-B",
                     Image = "aococnu1b.jpg",
-                    Price = 180000,
                     Size = "M",
                     Color = "Đen",
                     Quantity = 20
@@ -477,7 +459,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-L-B",
                     Image = "aococnu1b.jpg",
-                    Price = 180000,
                     Size = "L",
                     Color = "Đen",
                     Quantity = 20
@@ -487,7 +468,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-XL-B",
                     Image = "aococnu1b.jpg",
-                    Price = 180000,
                     Size = "XL",
                     Color = "Đen",
                     Quantity = 20
@@ -497,7 +477,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-XL-R",
                     Image = "aococnu1r.jpg",
-                    Price = 180000,
                     Size = "XL",
                     Color = "Đỏ",
                     Quantity = 20
@@ -507,7 +486,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-L-R",
                     Image = "aococnu1r.jpg",
-                    Price = 180000,
                     Size = "L",
                     Color = "Đỏ",
                     Quantity = 20
@@ -517,7 +495,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-M-R",
                     Image = "aococnu1r.jpg",
-                    Price = 180000,
                     Size = "M",
                     Color = "Đỏ",
                     Quantity = 20
@@ -527,7 +504,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-XL-Y",
                     Image = "aococnu1y.jpg",
-                    Price = 180000,
                     Size = "XL",
                     Color = "Vàng",
                     Quantity = 20
@@ -537,7 +513,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-L-Y",
                     Image = "aococnu1y.jpg",
-                    Price = 180000,
                     Size = "L",
                     Color = "Vàng",
                     Quantity = 20
@@ -547,7 +522,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo phông MN2SM3")),
                     ProductName = "Áo phông MN2SM3-M-Y",
                     Image = "aococnu1y.jpg",
-                    Price = 180000,
                     Size = "M",
                     Color = "Vàng",
                     Quantity = 20
@@ -557,7 +531,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo tay dài M2SDN2")),
                     ProductName = "Áo tay dài M2SDN2-M-W",
                     Image = "aodainu1.jpg",
-                    Price = 300000,
                     Size = "M",
                     Color = "Trắng",
                     Quantity = 20
@@ -567,7 +540,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo tay dài M2SDN2")),
                     ProductName = "Áo tay dài M2SDN2-L-W",
                     Image = "aodainu1.jpg",
-                    Price = 300000,
                     Size = "L",
                     Color = "Trắng",
                     Quantity = 20
@@ -577,7 +549,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo tay dài M2SDN2")),
                     ProductName = "Áo tay dài M2SDN2-XL-W",
                     Image = "aodainu1.jpg",
-                    Price = 300000,
                     Size = "XL",
                     Color = "Trắng",
                     Quantity = 20
@@ -587,7 +558,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Chân váy M2SCV3")),
                     ProductName = "Chân váy M2SCV3-29-P",
                     Image = "chanvaynu.jpg",
-                    Price = 225000,
                     Size = "29",
                     Color = "Hồng",
                     Quantity = 20
@@ -597,7 +567,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Chân váy M2SCV3")),
                     ProductName = "Chân váy M2SCV3-30-P",
                     Image = "chanvaynu.jpg",
-                    Price = 225000,
                     Size = "30",
                     Color = "Hồng",
                     Quantity = 20
@@ -607,7 +576,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Chân váy M2SCV3")),
                     ProductName = "Chân váy M2SCV3-31-P",
                     Image = "chanvaynu.jpg",
-                    Price = 225000,
                     Size = "31",
                     Color = "Hồng",
                     Quantity = 20
@@ -617,7 +585,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần bò NUDE23")),
                     ProductName = "Quần bò NUDE23-29-B",
                     Image = "quanbonu1.jpg",
-                    Price = 300000,
                     Size = "29",
                     Color = "Xanh",
                     Quantity = 20
@@ -627,7 +594,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần bò NUDE23")),
                     ProductName = "Quần bò NUDE23-30-B",
                     Image = "quanbonu1.jpg",
-                    Price = 300000,
                     Size = "30",
                     Color = "Xanh",
                     Quantity = 20
@@ -637,7 +603,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần bò NUDE23")),
                     ProductName = "Quần bò NUDE23-31-B",
                     Image = "quanbonu1.jpg",
-                    Price = 300000,
                     Size = "31",
                     Color = "Xanh",
                     Quantity = 20
@@ -647,7 +612,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Quần bò NUDE23")),
                     ProductName = "Quần bò NUDE23-32-B",
                     Image = "quanbonu1.jpg",
-                    Price = 300000,
                     Size = "32",
                     Color = "Xanh",
                     Quantity = 20
@@ -657,7 +621,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Ðôi M2SDG7")),
                     ProductName = "Áo Ðôi M2SDG7-M-B",
                     Image = "aokhoacdoi1.jpg",
-                    Price = 800000,
                     Size = "M",
                     Color = "Đen",
                     Quantity = 20
@@ -667,7 +630,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Ðôi M2SDG7")),
                     ProductName = "Áo Ðôi M2SDG7-L-B",
                     Image = "aokhoacdoi1.jpg",
-                    Price = 800000,
                     Size = "L",
                     Color = "Đen",
                     Quantity = 20
@@ -677,7 +639,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Ðôi M2SDG7")),
                     ProductName = "Áo Ðôi M2SDG7-XL-B",
                     Image = "aokhoacdoi1.jpg",
-                    Price = 800000,
                     Size = "XL",
                     Color = "Đen",
                     Quantity = 20
@@ -687,7 +648,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Ðôi M2SMD3")),
                     ProductName = "Áo Ðôi M2SMD3-F-B",
                     Image = "aophongdoi1.jpg",
-                    Price = 350000,
                     Size = "Free Size",
                     Color = "Đen",
                     Quantity = 20
@@ -697,7 +657,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Ðôi M2SMD3")),
                     ProductName = "Áo Ðôi M2SMD3-F-W",
                     Image = "aophongdoi1w.jpg",
-                    Price = 350000,
                     Size = "Free Size",
                     Color = "Trắng",
                     Quantity = 20
@@ -707,7 +666,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG2")),
                     ProductName = "Áo Khoác M2SDG2-M-B",
                     Image = "aokhoacbo1.jpg",
-                    Price = 700000,
                     Size = "M",
                     Color = "Xanh",
                     Quantity = 20
@@ -717,7 +675,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG2")),
                     ProductName = "Áo Khoác M2SDG2-L-B",
                     Image = "aokhoacbo1.jpg",
-                    Price = 700000,
                     Size = "L",
                     Color = "Xanh",
                     Quantity = 20
@@ -727,7 +684,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG2")),
                     ProductName = "Áo Khoác M2SDG2-XL-B",
                     Image = "aokhoacbo1.jpg",
-                    Price = 700000,
                     Size = "XL",
                     Color = "Xanh",
                     Quantity = 20
@@ -737,7 +693,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG1")),
                     ProductName = "Áo Khoác M2SDG1-M-B",
                     Image = "aokhoacbo2.jpg",
-                    Price = 650000,
                     Size = "M",
                     Color = "Xanh",
                     Quantity = 20
@@ -747,7 +702,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG1")),
                     ProductName = "Áo Khoác M2SDG1-L-B",
                     Image = "aokhoacbo2.jpg",
-                    Price = 650000,
                     Size = "L",
                     Color = "Xanh",
                     Quantity = 20
@@ -757,7 +711,6 @@ namespace cozaStore.DataAccessLayer
                     Product = products.FirstOrDefault(s => s.ProductName.Equals("Áo Khoác M2SDG1")),
                     ProductName = "Áo Khoác M2SDG1-XL-B",
                     Image = "aokhoacbo2.jpg",
-                    Price = 650000,
                     Size = "XL",
                     Color = "Xanh",
                     Quantity = 20

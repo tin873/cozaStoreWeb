@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -55,7 +56,18 @@ namespace cozaStore.Models
             } 
         }
 
-
+        public decimal PricePromotion
+        {
+            get
+            {
+                decimal price = Price;
+                if(Promotion != null && Promotion.EndDate > DateTime.Now)
+                {
+                    price -= ((decimal)Promotion.Discount / 100) * Price;
+                }
+                return price;
+            }
+        }
         public virtual Category Category { get; set; }
 
 
@@ -65,5 +77,7 @@ namespace cozaStore.Models
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
 
         public virtual Supplier Supplier { get; set; }
+
+        public virtual Promotion Promotion { get; set; }
     }
 }

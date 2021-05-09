@@ -1,7 +1,68 @@
 ﻿@model Product
+    <head>
+        <style>
+            ._2iNVI- {
+                -webkit-transform: scale(1.4);
+                transform: scale(1.4);
+                padding: 7px 8px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 2;
+            }
+            ._3iRehQ {
+                display: inline-block;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                position: relative;
+                padding: 4px 2px 3px;
+                font-weight: 700;
+            }
+            ._36vTKx {
+                width: 36px;
+                height: 32px;
+            }
+            ._2xY8te {
+                background-color: rgba(255,212,36,.9);
+            }
+            ._2TDZGE {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-flex-direction: column;
+                -moz-box-orient: vertical;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                text-align: center;
+                position: relative;
+                font-weight: 400;
+                line-height: .8125rem;
+                color: #ee4d2d;
+                text-transform: uppercase;
+                font-size: .75rem;
+            }
+            ._17XqBU {
+                color: #fff;
+            }
+        </style>
+    </head>
 <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ">
     <div class="block2">
         <div class="block2-pic hov-img0">
+            @if (Model.Promotion != null && Model.Promotion.EndDate > DateTime.Now)
+            {
+                <div class="_2iNVI-">
+                    <div class="_3iRehQ _36vTKx _2xY8te shopee-badge">
+                        <div class="_2TDZGE">
+                            <span class="percent">@(Model.Promotion.Discount)%</span>
+                            <span class="_17XqBU">giảm</span>
+                        </div>
+                    </div>
+                </div>
+            }
             @{
                 string ImagePath = "~/wwwroot/images/" + Model.Image;
             }
@@ -18,9 +79,18 @@
                     @Model.ProductName
                 </a>
 
-                <span class="stext-105 cl3">
-                    @(Model.Price.ToString("#,###"))đ
-                </span>
+                @if (Model.Promotion != null && Model.Promotion.EndDate > DateTime.Now)
+                {
+                    <span class="stext-105 cl3" style="width: 100%;">
+                        <span style="color: red;">@(Model.PricePromotion.ToString("#,###"))đ</span><strike style="float: right;">@(Model.Price.ToString("#,###"))đ</strike>
+                    </span>
+                }
+                else
+                {
+                    <span class="stext-105 cl3">
+                        <span>@(Model.Price.ToString("#,###"))đ</span>
+                    </span>
+                }
             </div>
         </div>
     </div>

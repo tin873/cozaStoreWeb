@@ -16,16 +16,35 @@ namespace cozaStore.Presentation.Controllers
         private readonly ICategoryServices _category;
         private readonly ICommentServices _comment;
         private readonly IProductDetailServices _productDetail;
-        public ProductsController(IProductServices product, ICategoryServices category, ICommentServices comment, IProductDetailServices productDetail)
+        private readonly IPromotion _promotion;
+        public ProductsController(IProductServices product, ICategoryServices category, ICommentServices comment, IProductDetailServices productDetail, IPromotion promotion)
         {
             _product = product;
             _category = category;
             _comment = comment;
             _productDetail = productDetail;
+            _promotion = promotion;
         }
         // GET: Products
+        /// <summary>
+        /// display product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <param name="page"></param>
+        /// <param name="CurrentFilter"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index(string id, FormCollection data, int? page, string CurrentFilter)
         {
+            //delete promotion with end date <= DateTime.Now
+            var promotions = _promotion.GetAll();
+            foreach (var item in promotions)
+            {
+                if (item.EndDate <= DateTime.Now)
+                {
+                    _promotion.Delete(item.PromotionId);
+                }
+            }
             IEnumerable<Product> products;
             string search = data["search"];
             string searchHeader = data["searchHeader"];
@@ -60,6 +79,11 @@ namespace cozaStore.Presentation.Controllers
             return View(products);
         }
 
+        /// <summary>
+        /// display detail product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Detail(int id)
         {
             var product = await _product.GetByIdAsync(id);
@@ -107,18 +131,68 @@ namespace cozaStore.Presentation.Controllers
             }    
             return View(product);
         }
+
+        /// <summary>
+        /// display category partial
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult _Menu()
         {
             var categories =  _category.GetAll();
             return PartialView(categories);
         }
 
+        /// <summary>
+        /// display list size from color
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PartialViewResult _SelectSize(string id)
+        {
+            var arr = id.Split(' ');
+            int productId = int.Parse(arr[0]);
+            if(arr.Length < 2)
+            {
+                return PartialView();
+            }    
+            else
+            {
+                string color = arr[1];
+                var product = _product.GetById(productId);
+                var productDetail = product.ProductDetails.Where(x => x.Color.ToUpper().Equals(color.ToUpper()));
+                //get size
+                List<SizeViewData> sizes = new List<SizeViewData>();
+
+                var size = from s in productDetail
+                           group s by new { s.Size } into g
+                           select new { g.Key.Size };
+                foreach (var item in size)
+                {
+                    var aritem = item.ToString().Split(' ');
+                    var s = new SizeViewData() { Size = aritem[3] };
+                    sizes.Add(s);
+                }
+                return PartialView(sizes);
+            }    
+            
+        }
+
+        /// <summary>
+        /// display realease product by category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public PartialViewResult _RealeaseProduct(int id)
         {
             var products =  _product.FindAll(filter: x => x.Category.CategoryID == id);
             return PartialView(products);
         }
 
+        /// <summary>
+        /// set comment in table Comment of Database
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult _Comment(FormCollection data)
         {
@@ -142,12 +216,18 @@ namespace cozaStore.Presentation.Controllers
                 Email = email,
                 NameUser = name,
                 Content = content,
-                Product = product
+                Product = product,
+                CommentDate = DateTime.Now
             };
                 _comment.Create(comment);
                 return RedirectToAction("Detail", new { id = id });
         }
-        
+       
+        /// <summary>
+        /// not use
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public PartialViewResult _Color(string id)
         {
             var arr = id.Split();

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<cozaStoreWeb.Models.Supplier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách nhà cung cấp</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên nhà cung cấp
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.SupplierID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.SupplierID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.SupplierID })
+        </td>
+    </tr>
+}
+
+</table>

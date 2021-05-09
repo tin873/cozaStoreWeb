@@ -39,7 +39,7 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProductID,ProductName,Image,Description,Price,SupplierID,CategoryID")] Product product)
+        public async Task<ActionResult> Create([Bind(Include = "ProductName,Image,Description,Price,SupplierID,CategoryID")] Product product)
         {
 
             try
@@ -99,6 +99,7 @@ namespace cozaStore.Presentation.Areas.Admin.Controllers
                     f.SaveAs(UploadPath);
                     product.Image = FileName;
                 }
+                string a = product.Image;
                 await _product.UpdateAsync(product);
                 return RedirectToAction("Index");
             }

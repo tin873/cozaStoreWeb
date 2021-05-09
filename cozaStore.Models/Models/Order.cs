@@ -23,7 +23,8 @@ namespace cozaStore.Models
         [DisplayName("Ngày gửi")]
         public DateTime ShippedDate { get; set; }
 
-
+        [DisplayName("Ngày nhận")]
+        public DateTime? EndDate { get; set; }
 
         [DisplayName("Họ tên")]
         [Required(ErrorMessage = "Họ tên không được để trống")]
@@ -51,7 +52,7 @@ namespace cozaStore.Models
                 decimal sumTotal = 0m;
                 foreach (var item in OrderDetails)
                 {
-                    sumTotal = item.ProductDetail.Price * item.Quantity;
+                    sumTotal += item.ProductDetail.Product.PricePromotion * item.Quantity;
                 }
                 if (Coupon != null)
                 {
@@ -63,19 +64,6 @@ namespace cozaStore.Models
                     return sumTotal;
                 }
 
-            }
-        }
-
-        public decimal SumTotalNoDiscout
-        {
-            get
-            {
-                decimal sumTotal = 0m;
-                foreach (var item in OrderDetails)
-                {
-                    sumTotal = item.ProductDetail.Price * item.Quantity;
-                }
-                return sumTotal;
             }
         }
         public Status Status { get; set; }

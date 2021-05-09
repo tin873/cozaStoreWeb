@@ -82,6 +82,9 @@ namespace cozaStore.Presentation
 
             container.RegisterType<IGenericReposistory<ProductDetail>, GenericReposistory<ProductDetail>>();
             container.RegisterType<IProductDetailServices, ProductDetailServices>();
+
+            container.RegisterType<IGenericReposistory<Promotion>, GenericReposistory<Promotion>>();
+            container.RegisterType<IPromotion, PromotionServices>();
         }
     }
 }

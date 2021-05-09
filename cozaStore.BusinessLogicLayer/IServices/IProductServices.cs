@@ -1,5 +1,4 @@
 ﻿using cozaStore.Models;
-using System.Collections.Generic;
 
 namespace cozaStore.BusinessLogicLayer
 {
